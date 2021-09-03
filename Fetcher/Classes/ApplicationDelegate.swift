@@ -34,17 +34,20 @@ import GitHubUpdates
     private var updateCheckTimer:             Timer?
     private var statusItem:                   NSStatusItem?
     private var popover:                      NSPopover?
+    private var popoverTranscientEvent:       Any?
     
     @objc public dynamic var startAtLogin:                 Bool = false
     @objc public dynamic var automaticallyCheckForUpdates: Bool = false
     
     @IBOutlet private var updater: GitHubUpdater!
     
-    func applicationDidFinishLaunching( _ notification: Notification )
+    public func applicationDidFinishLaunching( _ notification: Notification )
     {
         self.startAtLogin               = NSApp.isLoginItemEnabled()
         self.statusItem                 = NSStatusBar.system.statusItem( withLength: NSStatusItem.squareLength )
         self.statusItem?.button?.image  = NSImage( named: "StatusIconTemplate" )
+        self.statusItem?.button?.target = self
+        self.statusItem?.button?.action = #selector( showPopover(_:) )
         
         let _ = self.mainViewController.view
         
@@ -92,18 +95,44 @@ import GitHubUpdates
         
         self.observations.append( contentsOf: [ o1, o2 ] )
         
-        self.automaticallyCheckForUpdates = Preferences.shared.autoCheckForUpdates
-        Preferences.shared.lastStart      = Date()
-        
         if Preferences.shared.paths.count == 0
         {
             self.showPreferencesWindow( nil )
         }
         
-        self.showPreferencesWindow( nil )
+        #if DEBUG
+        self.showPopover( nil )
+        #endif
+        
+        self.automaticallyCheckForUpdates = Preferences.shared.autoCheckForUpdates
+        Preferences.shared.lastStart      = Date()
     }
     
-    @IBAction func showPreferencesWindow( _ sender: Any? )
+    @IBAction public func showPopover( _ sender: Any? )
+    {
+        if self.popover?.isShown ?? false
+        {
+            self.popover?.close()
+            
+            return
+        }
+        
+        self.popover                        = NSPopover()
+        self.popover?.contentViewController = self.mainViewController
+        self.popover?.behavior              = .applicationDefined
+        
+        if let button = self.statusItem?.button
+        {
+            self.popover?.show( relativeTo: NSZeroRect, of: button, preferredEdge: NSRectEdge.minY )
+        }
+        
+        self.popoverTranscientEvent = NSEvent.addGlobalMonitorForEvents( matching: .leftMouseUp )
+        {
+            _ in self.popover?.close()
+        }
+    }
+    
+    @IBAction public func showPreferencesWindow( _ sender: Any? )
     {
         if self.popover?.isShown ?? false
         {
@@ -121,7 +150,7 @@ import GitHubUpdates
         self.preferencesWindowController.window?.makeKeyAndOrderFront( nil )
     }
     
-    @IBAction func showAboutWindow( _ sender: Any? )
+    @IBAction public func showAboutWindow( _ sender: Any? )
     {
         if self.popover?.isShown ?? false
         {
