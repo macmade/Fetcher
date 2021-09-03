@@ -140,7 +140,7 @@ public class MainViewController: NSViewController
             let url = URL( fileURLWithPath: path ).appendingPathComponent( name )
             let git = url.appendingPathComponent( ".git" )
             
-            guard FileManager.default.fileExists( atPath: git.path, isDirectory: &isDir ), isDir.boolValue else
+            guard FileManager.default.fileExists( atPath: git.path ) else
             {
                 continue
             }
