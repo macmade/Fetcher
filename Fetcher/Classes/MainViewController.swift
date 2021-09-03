@@ -30,6 +30,7 @@ public class MainViewController: NSViewController
     
     @objc private dynamic var updating = false
     
+    @IBOutlet private var mainMenu:        NSMenu!
     @IBOutlet private var arrayController: NSArrayController!
     
     public override var nibName: NSNib.Name?
@@ -48,6 +49,18 @@ public class MainViewController: NSViewController
             NSSortDescriptor( key: "name", ascending: true, selector: #selector( NSString.localizedCaseInsensitiveCompare( _: ) ) ),
             NSSortDescriptor( key: "path", ascending: true, selector: #selector( NSString.localizedCaseInsensitiveCompare( _: ) ) ),
         ]
+    }
+    
+    @IBAction private func showMenu( _ sender: Any? )
+    {
+        guard let view = sender as? NSView, let event = NSApp.currentEvent else
+        {
+            NSSound.beep()
+            
+            return
+        }
+        
+        NSMenu.popUpContextMenu( self.mainMenu, with: event, for: view, with: nil )
     }
     
     @IBAction private func open( _ sender: Any? )

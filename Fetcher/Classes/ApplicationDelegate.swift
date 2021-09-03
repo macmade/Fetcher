@@ -149,11 +149,7 @@ import GitHubUpdates
     
     @IBAction public func showPreferencesWindow( _ sender: Any? )
     {
-        if self.popover?.isShown ?? false
-        {
-            self.popover?.close()
-        }
-        
+        self.popover?.close()
         self.preferencesWindowController.window?.layoutIfNeeded()
         
         if self.preferencesWindowController.window?.isVisible == false
@@ -167,11 +163,7 @@ import GitHubUpdates
     
     @IBAction public func showAboutWindow( _ sender: Any? )
     {
-        if self.popover?.isShown ?? false
-        {
-            self.popover?.close()
-        }
-        
+        self.popover?.close()
         self.aboutWindowController.window?.layoutIfNeeded()
         
         if self.aboutWindowController.window?.isVisible == false
@@ -185,11 +177,7 @@ import GitHubUpdates
     
     @IBAction public func checkForUpdates( _ sender: Any? )
     {
-        if self.popover?.isShown ?? false
-        {
-            self.popover?.close()
-        }
-        
+        self.popover?.close()
         NSApp.activate( ignoringOtherApps: true  )
         self.updater.checkForUpdates( sender )
     }

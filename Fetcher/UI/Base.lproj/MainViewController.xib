@@ -8,6 +8,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="MainViewController" customModule="Fetcher" customModuleProvider="target">
             <connections>
                 <outlet property="arrayController" destination="Xdc-Fu-6e1" id="snZ-DC-IhQ"/>
+                <outlet property="mainMenu" destination="bsT-Ux-L2T" id="vad-0A-kyM"/>
                 <outlet property="view" destination="c22-O7-iKe" id="gR7-tY-zmk"/>
             </connections>
         </customObject>
@@ -49,6 +50,9 @@
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <connections>
+                        <action selector="showMenu:" target="-2" id="t7V-DS-foe"/>
+                    </connections>
                 </button>
                 <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="h5L-KI-alE">
                     <rect key="frame" x="0.0" y="267" width="401" height="5"/>
@@ -175,6 +179,36 @@
             <point key="canvasLocation" x="69" y="209"/>
         </customView>
         <arrayController selectsInsertedObjects="NO" avoidsEmptySelection="NO" clearsFilterPredicateOnInsertion="NO" automaticallyRearrangesObjects="YES" id="Xdc-Fu-6e1"/>
+        <menu id="bsT-Ux-L2T">
+            <items>
+                <menuItem title="About Fetcher..." id="gNM-DX-IQr">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="showAboutWindow:" target="-1" id="9XL-Id-FBo"/>
+                    </connections>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="bDx-aA-pHG"/>
+                <menuItem title="Check for Updates..." id="5gO-Vz-dhU">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="checkForUpdates:" target="-1" id="HTI-nH-SJJ"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Preferences..." id="qsc-Ud-0Px">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="showPreferencesWindow:" target="-1" id="7ct-nM-mtf"/>
+                    </connections>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="Oks-Ak-RGN"/>
+                <menuItem title="Quit" keyEquivalent="q" id="nWJ-tI-M4Y">
+                    <connections>
+                        <action selector="terminate:" target="-1" id="rb1-SA-efv"/>
+                    </connections>
+                </menuItem>
+            </items>
+            <point key="canvasLocation" x="2" y="-44"/>
+        </menu>
     </objects>
     <resources>
         <image name="NSActionTemplate" width="15" height="15"/>

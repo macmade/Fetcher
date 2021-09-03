@@ -30,5 +30,7 @@
 	<string>NSApplication</string>
 	<key>LSUIElement</key>
 	<true/>
+	<key>NSHumanReadableCopyright</key>
+	<string>Copyright © 2020 XS-Labs. All rights reserved.</string>
 </dict>
 </plist>
