@@ -42,7 +42,12 @@ public class MainViewController: NSViewController
         super.viewDidLoad()
         self.reload()
         
-        self.title = "Fetcher"
+        self.title                           = "Fetcher"
+        self.arrayController.sortDescriptors =
+        [
+            NSSortDescriptor( key: "name", ascending: true, selector: #selector( NSString.localizedCaseInsensitiveCompare( _: ) ) ),
+            NSSortDescriptor( key: "path", ascending: true, selector: #selector( NSString.localizedCaseInsensitiveCompare( _: ) ) ),
+        ]
     }
     
     private func reload()

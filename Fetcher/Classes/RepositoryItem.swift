@@ -22,12 +22,16 @@
  * THE SOFTWARE.
  ******************************************************************************/
 
-import Foundation
+import Cocoa
 import GitKit
 
 public class RepositoryItem: NSObject
 {
     private var repository: Repository
+    
+    @objc public dynamic let name: String
+    @objc public dynamic let path: String
+    @objc public dynamic let icon: NSImage?
     
     public convenience init?( path: String )
     {
@@ -39,6 +43,9 @@ public class RepositoryItem: NSObject
         do
         {
             self.repository = try Repository( url: url )
+            self.path       = url.deletingLastPathComponent().path
+            self.name       = url.lastPathComponent
+            self.icon       = NSWorkspace.shared.icon( forFile: url.path )
         }
         catch let error as GitKit.Error
         {
