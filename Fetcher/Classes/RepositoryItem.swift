@@ -32,6 +32,7 @@ public class RepositoryItem: NSObject
     @objc public dynamic let name: String
     @objc public dynamic let path: String
     @objc public dynamic let icon: NSImage?
+    @objc public dynamic let head: String?
     
     public var hasXcodeProject: Bool
     {
@@ -52,10 +53,23 @@ public class RepositoryItem: NSObject
     {
         do
         {
-            self.repository    = try Repository( url: url )
-            self.path          = url.deletingLastPathComponent().path
-            self.name          = url.lastPathComponent
-            self.icon          = RepositoryItem.icon( for: url )
+            self.repository = try Repository( url: url )
+            self.path       = url.deletingLastPathComponent().path
+            self.name       = url.lastPathComponent
+            self.icon       = RepositoryItem.icon( for: url )
+            
+            if let head = self.repository.head
+            {
+                switch head
+                {
+                    case .first(  let branch ): self.head = branch.name
+                    case .second( let commit ): self.head = String( commit.hash.prefix( 7 ) )
+                }
+            }
+            else
+            {
+                self.head = nil
+            }
         }
         catch let error as GitKit.Error
         {

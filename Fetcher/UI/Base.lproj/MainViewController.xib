@@ -118,18 +118,31 @@
                                                             <binding destination="usX-4z-YoN" name="value" keyPath="objectValue.path" id="kPk-HK-ZCz"/>
                                                         </connections>
                                                     </textField>
+                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="500" translatesAutoresizingMaskIntoConstraints="NO" id="c0n-MG-zD5">
+                                                        <rect key="frame" x="359" y="14" width="33" height="14"/>
+                                                        <textFieldCell key="cell" controlSize="small" lineBreakMode="clipping" title="Label" id="A1t-LI-Bfx">
+                                                            <font key="font" metaFont="smallSystem"/>
+                                                            <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                        </textFieldCell>
+                                                        <connections>
+                                                            <binding destination="usX-4z-YoN" name="value" keyPath="objectValue.head" id="jO6-gw-NOo"/>
+                                                        </connections>
+                                                    </textField>
                                                 </subviews>
                                                 <constraints>
-                                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="auJ-mx-xK3" secondAttribute="trailing" constant="10" id="4BR-Te-O9n"/>
                                                     <constraint firstItem="Bze-1Y-p0B" firstAttribute="bottom" secondItem="bgs-tE-RCb" secondAttribute="bottom" constant="-2" id="90K-fJ-KaK"/>
                                                     <constraint firstItem="bgs-tE-RCb" firstAttribute="top" secondItem="usX-4z-YoN" secondAttribute="top" constant="5" id="VDa-XO-QOV"/>
-                                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Bze-1Y-p0B" secondAttribute="trailing" constant="10" id="WBE-Vm-Tpx"/>
                                                     <constraint firstItem="bgs-tE-RCb" firstAttribute="leading" secondItem="usX-4z-YoN" secondAttribute="leading" constant="10" id="asS-Rr-3bA"/>
                                                     <constraint firstItem="auJ-mx-xK3" firstAttribute="leading" secondItem="bgs-tE-RCb" secondAttribute="trailing" constant="8" symbolic="YES" id="f7c-FX-10I"/>
                                                     <constraint firstItem="auJ-mx-xK3" firstAttribute="top" secondItem="bgs-tE-RCb" secondAttribute="top" constant="2" id="gZd-IH-Rx2"/>
+                                                    <constraint firstItem="c0n-MG-zD5" firstAttribute="centerY" secondItem="bgs-tE-RCb" secondAttribute="centerY" id="hU8-pz-PFU"/>
                                                     <constraint firstItem="auJ-mx-xK3" firstAttribute="centerY" secondItem="bgs-tE-RCb" secondAttribute="centerY" id="hXg-cj-RJZ"/>
+                                                    <constraint firstAttribute="trailing" secondItem="c0n-MG-zD5" secondAttribute="trailing" constant="10" id="him-vN-i3T"/>
                                                     <constraint firstAttribute="bottom" secondItem="bgs-tE-RCb" secondAttribute="bottom" constant="5" id="i6I-5U-p9c"/>
+                                                    <constraint firstItem="c0n-MG-zD5" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="auJ-mx-xK3" secondAttribute="trailing" constant="8" symbolic="YES" id="ldy-N3-U3Y"/>
                                                     <constraint firstItem="Bze-1Y-p0B" firstAttribute="leading" secondItem="auJ-mx-xK3" secondAttribute="leading" id="osy-ku-EQf"/>
+                                                    <constraint firstItem="c0n-MG-zD5" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Bze-1Y-p0B" secondAttribute="trailing" constant="8" symbolic="YES" id="vcX-Rr-GS1"/>
                                                 </constraints>
                                             </tableCellView>
                                         </prototypeCellViews>
@@ -164,10 +177,10 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </searchFieldCell>
                     <connections>
-                        <binding destination="Xdc-Fu-6e1" name="predicate" keyPath="filterPredicate" id="D8C-Bw-Hn8">
+                        <binding destination="Xdc-Fu-6e1" name="predicate" keyPath="filterPredicate" id="WeM-vi-1RN">
                             <dictionary key="options">
                                 <string key="NSDisplayName">predicate</string>
-                                <string key="NSPredicateFormat">name contains[c] $value or path contains[c] $value</string>
+                                <string key="NSPredicateFormat">name contains[c] $value or path contains[c] $value or head contains[c] $value</string>
                             </dictionary>
                         </binding>
                     </connections>
