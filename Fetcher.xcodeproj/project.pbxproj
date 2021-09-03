@@ -19,6 +19,8 @@
 		055FD93126E22D190034048C /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055FD93026E22D190034048C /* Preferences.swift */; };
 		055FD93326E22D5A0034048C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055FD93226E22D5A0034048C /* MainViewController.swift */; };
 		055FD93626E22D7C0034048C /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 055FD93426E22D7C0034048C /* MainViewController.xib */; };
+		055FD93826E22EC90034048C /* PreferencesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055FD93726E22EC90034048C /* PreferencesWindowController.swift */; };
+		055FD93B26E22EE90034048C /* PreferencesWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 055FD93926E22EE90034048C /* PreferencesWindowController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -120,6 +122,8 @@
 		055FD93026E22D190034048C /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		055FD93226E22D5A0034048C /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		055FD93526E22D7C0034048C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainViewController.xib; sourceTree = "<group>"; };
+		055FD93726E22EC90034048C /* PreferencesWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesWindowController.swift; sourceTree = "<group>"; };
+		055FD93A26E22EE90034048C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/PreferencesWindowController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -314,6 +318,7 @@
 				055FD92326E22BB60034048C /* NSApplication+LaunchServices.h */,
 				055FD92226E22BB60034048C /* NSApplication+LaunchServices.m */,
 				055FD93026E22D190034048C /* Preferences.swift */,
+				055FD93726E22EC90034048C /* PreferencesWindowController.swift */,
 				055FD93226E22D5A0034048C /* MainViewController.swift */,
 			);
 			path = Classes;
@@ -325,6 +330,7 @@
 				055FD91D26E22B4F0034048C /* AboutWindowController.xib */,
 				055FD91826E22B3A0034048C /* MainMenu.xib */,
 				055FD93426E22D7C0034048C /* MainViewController.xib */,
+				055FD93926E22EE90034048C /* PreferencesWindowController.xib */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -433,6 +439,7 @@
 			files = (
 				055FD91C26E22B3A0034048C /* MainMenu.xib in Resources */,
 				055FD93626E22D7C0034048C /* MainViewController.xib in Resources */,
+				055FD93B26E22EE90034048C /* PreferencesWindowController.xib in Resources */,
 				055FD91F26E22B4F0034048C /* AboutWindowController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -444,6 +451,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				055FD93826E22EC90034048C /* PreferencesWindowController.swift in Sources */,
 				055FD92426E22BB60034048C /* NSApplication+LaunchServices.m in Sources */,
 				055FD91A26E22B3A0034048C /* AboutWindowController.swift in Sources */,
 				055FD93126E22D190034048C /* Preferences.swift in Sources */,
@@ -477,6 +485,14 @@
 				055FD93526E22D7C0034048C /* Base */,
 			);
 			name = MainViewController.xib;
+			sourceTree = "<group>";
+		};
+		055FD93926E22EE90034048C /* PreferencesWindowController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				055FD93A26E22EE90034048C /* Base */,
+			);
+			name = PreferencesWindowController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

@@ -27,11 +27,13 @@ import GitHubUpdates
 
 @main class ApplicationDelegate: NSObject, NSApplicationDelegate
 {
-    private var statusItem:             NSStatusItem?
-    private var aboutWindowController = AboutWindowController()
-    private var mainViewController    = MainViewController()
-    private var observations          = [ NSKeyValueObservation ]()
-    private var updateCheckTimer:       Timer?
+    private var aboutWindowController       = AboutWindowController()
+    private var preferencesWindowController = PreferencesWindowController()
+    private var mainViewController          = MainViewController()
+    private var observations                = [ NSKeyValueObservation ]()
+    private var updateCheckTimer:             Timer?
+    private var statusItem:                   NSStatusItem?
+    private var popover:                      NSPopover?
     
     @objc public dynamic var startAtLogin:                 Bool = false
     @objc public dynamic var automaticallyCheckForUpdates: Bool = false
@@ -92,5 +94,57 @@ import GitHubUpdates
         
         self.automaticallyCheckForUpdates = Preferences.shared.autoCheckForUpdates
         Preferences.shared.lastStart      = Date()
+        
+        if Preferences.shared.paths.count == 0
+        {
+            self.showPreferencesWindow( nil )
+        }
+    }
+    
+    @IBAction func showPreferencesWindow( _ sender: Any? )
+    {
+        if self.popover?.isShown ?? false
+        {
+            self.popover?.close()
+        }
+        
+        self.preferencesWindowController.window?.layoutIfNeeded()
+        
+        if self.preferencesWindowController.window?.isVisible == false
+        {
+            self.preferencesWindowController.window?.center()
+        }
+        
+        NSApp.activate( ignoringOtherApps: true  )
+        self.preferencesWindowController.window?.makeKeyAndOrderFront( nil )
+    }
+    
+    @IBAction func showAboutWindow( _ sender: Any? )
+    {
+        if self.popover?.isShown ?? false
+        {
+            self.popover?.close()
+        }
+        
+        self.aboutWindowController.window?.layoutIfNeeded()
+        
+        if self.aboutWindowController.window?.isVisible == false
+        {
+            self.aboutWindowController.window?.center()
+        }
+        
+        NSApp.activate( ignoringOtherApps: true  )
+        self.aboutWindowController.window?.makeKeyAndOrderFront( nil )
+    }
+    
+    @IBAction public func checkForUpdates( _ sender: Any? )
+    {
+        if self.popover?.isShown ?? false
+        {
+            self.popover?.close()
+        }
+        
+        NSApp.activate( ignoringOtherApps: true  )
+        self.updater.checkForUpdates( sender )
     }
 }

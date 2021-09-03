@@ -27,7 +27,8 @@ import Cocoa
 @objc public class Preferences: NSObject
 {
     @objc public dynamic var lastStart:           Date?
-    @objc public dynamic var autoCheckForUpdates: Bool = true
+    @objc public dynamic var autoCheckForUpdates: Bool       = true
+    @objc public dynamic var paths:               [ String ] = []
     
     @objc public static let shared = Preferences()
     
