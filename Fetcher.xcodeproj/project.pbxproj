@@ -1,0 +1,461 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		055FD8C126E2299A0034048C /* ApplicationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055FD8C026E2299A0034048C /* ApplicationDelegate.swift */; };
+		055FD8C626E2299C0034048C /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 055FD8C426E2299C0034048C /* MainMenu.xib */; };
+		055FD90D26E22A5E0034048C /* GitKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 055FD90B26E22A250034048C /* GitKit.framework */; };
+		055FD90E26E22A5E0034048C /* GitKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 055FD90B26E22A250034048C /* GitKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		055FD90A26E22A250034048C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 055FD90626E22A250034048C /* GitKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 055FD8A426E218B50034048C;
+			remoteInfo = GitKit;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		055FD90F26E22A5E0034048C /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				055FD90E26E22A5E0034048C /* GitKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		055FD8BD26E2299A0034048C /* Fetcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fetcher.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		055FD8C026E2299A0034048C /* ApplicationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationDelegate.swift; sourceTree = "<group>"; };
+		055FD8C526E2299C0034048C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		055FD8C726E2299C0034048C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		055FD8C826E2299C0034048C /* Fetcher.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Fetcher.entitlements; sourceTree = "<group>"; };
+		055FD8D226E22A210034048C /* Release - ccache.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Release - ccache.xcconfig"; sourceTree = "<group>"; };
+		055FD8D326E22A210034048C /* Common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Common.xcconfig; sourceTree = "<group>"; };
+		055FD8D426E22A210034048C /* Debug - ccache.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Debug - ccache.xcconfig"; sourceTree = "<group>"; };
+		055FD8D526E22A210034048C /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
+		055FD8D626E22A210034048C /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
+		055FD8D726E22A210034048C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		055FD8D826E22A210034048C /* Release - Library.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Release - Library.xcconfig"; sourceTree = "<group>"; };
+		055FD8DA26E22A210034048C /* Signing.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Signing.xcconfig; sourceTree = "<group>"; };
+		055FD8DB26E22A210034048C /* Architectures.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Architectures.xcconfig; sourceTree = "<group>"; };
+		055FD8DD26E22A210034048C /* Issues.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Issues.xcconfig; sourceTree = "<group>"; };
+		055FD8DF26E22A210034048C /* Apple-APIs.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Apple-APIs.xcconfig"; sourceTree = "<group>"; };
+		055FD8E026E22A210034048C /* Generic-Issues.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Generic-Issues.xcconfig"; sourceTree = "<group>"; };
+		055FD8E126E22A210034048C /* Security.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Security.xcconfig; sourceTree = "<group>"; };
+		055FD8E226E22A210034048C /* Objective-C.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Objective-C.xcconfig"; sourceTree = "<group>"; };
+		055FD8E326E22A210034048C /* Analysis-Policy.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Analysis-Policy.xcconfig"; sourceTree = "<group>"; };
+		055FD8E426E22A210034048C /* Deployment.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Deployment.xcconfig; sourceTree = "<group>"; };
+		055FD8E526E22A210034048C /* Build-Options.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Build-Options.xcconfig"; sourceTree = "<group>"; };
+		055FD8E626E22A210034048C /* Swift-Compiler.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Swift-Compiler.xcconfig"; sourceTree = "<group>"; };
+		055FD8E726E22A210034048C /* Static-Analyzer.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Static-Analyzer.xcconfig"; sourceTree = "<group>"; };
+		055FD8E926E22A210034048C /* Warnings-Policies.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Warnings-Policies.xcconfig"; sourceTree = "<group>"; };
+		055FD8EA26E22A210034048C /* Code-Generation.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Code-Generation.xcconfig"; sourceTree = "<group>"; };
+		055FD8EB26E22A210034048C /* Language.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Language.xcconfig; sourceTree = "<group>"; };
+		055FD8EC26E22A210034048C /* General.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = General.xcconfig; sourceTree = "<group>"; };
+		055FD8ED26E22A210034048C /* Search-Paths.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Search-Paths.xcconfig"; sourceTree = "<group>"; };
+		055FD8EE26E22A210034048C /* Apple-LLVM.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Apple-LLVM.xcconfig"; sourceTree = "<group>"; };
+		055FD8F126E22A210034048C /* Modules.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Modules.xcconfig; sourceTree = "<group>"; };
+		055FD8F226E22A210034048C /* Objective-C.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Objective-C.xcconfig"; sourceTree = "<group>"; };
+		055FD8F326E22A210034048C /* C++.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "C++.xcconfig"; sourceTree = "<group>"; };
+		055FD8F426E22A210034048C /* Code-Generation.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Code-Generation.xcconfig"; sourceTree = "<group>"; };
+		055FD8F526E22A210034048C /* Address-Sanitizer.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Address-Sanitizer.xcconfig"; sourceTree = "<group>"; };
+		055FD8F626E22A210034048C /* Language.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Language.xcconfig; sourceTree = "<group>"; };
+		055FD8F726E22A210034048C /* Warnings.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Warnings.xcconfig; sourceTree = "<group>"; };
+		055FD8F826E22A210034048C /* Undefined-Behavior-Sanitizer.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Undefined-Behavior-Sanitizer.xcconfig"; sourceTree = "<group>"; };
+		055FD8F926E22A210034048C /* Warning-Policies.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Warning-Policies.xcconfig"; sourceTree = "<group>"; };
+		055FD8FB26E22A210034048C /* Objective-C-ARC.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Objective-C-ARC.xcconfig"; sourceTree = "<group>"; };
+		055FD8FC26E22A210034048C /* Objective-C.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Objective-C.xcconfig"; sourceTree = "<group>"; };
+		055FD8FD26E22A210034048C /* C++.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "C++.xcconfig"; sourceTree = "<group>"; };
+		055FD8FE26E22A210034048C /* All-Languages.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "All-Languages.xcconfig"; sourceTree = "<group>"; };
+		055FD8FF26E22A210034048C /* Preprocessing.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Preprocessing.xcconfig; sourceTree = "<group>"; };
+		055FD90026E22A210034048C /* Debug - Library.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Debug - Library.xcconfig"; sourceTree = "<group>"; };
+		055FD90126E22A210034048C /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		055FD90326E22A210034048C /* ccache-config.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "ccache-config.sh"; sourceTree = "<group>"; };
+		055FD90426E22A210034048C /* ccache.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ccache.sh; sourceTree = "<group>"; };
+		055FD90526E22A210034048C /* Debug - zld.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Debug - zld.xcconfig"; sourceTree = "<group>"; };
+		055FD90626E22A250034048C /* GitKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GitKit.xcodeproj; path = Submodules/GitKit/GitKit.xcodeproj; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		055FD8BA26E2299A0034048C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				055FD90D26E22A5E0034048C /* GitKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		055FD8B426E2299A0034048C = {
+			isa = PBXGroup;
+			children = (
+				055FD90626E22A250034048C /* GitKit.xcodeproj */,
+				055FD8D126E22A210034048C /* xcconfig */,
+				055FD8BF26E2299A0034048C /* Fetcher */,
+				055FD8BE26E2299A0034048C /* Products */,
+				055FD90C26E22A5E0034048C /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		055FD8BE26E2299A0034048C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				055FD8BD26E2299A0034048C /* Fetcher.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		055FD8BF26E2299A0034048C /* Fetcher */ = {
+			isa = PBXGroup;
+			children = (
+				055FD8CF26E229C60034048C /* Classes */,
+				055FD8CE26E229BF0034048C /* Supporting Files */,
+				055FD8D026E229CB0034048C /* UI */,
+			);
+			path = Fetcher;
+			sourceTree = "<group>";
+		};
+		055FD8CE26E229BF0034048C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				055FD8C726E2299C0034048C /* Info.plist */,
+				055FD8C826E2299C0034048C /* Fetcher.entitlements */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		055FD8CF26E229C60034048C /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				055FD8C026E2299A0034048C /* ApplicationDelegate.swift */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		055FD8D026E229CB0034048C /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				055FD8C426E2299C0034048C /* MainMenu.xib */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		055FD8D126E22A210034048C /* xcconfig */ = {
+			isa = PBXGroup;
+			children = (
+				055FD8D226E22A210034048C /* Release - ccache.xcconfig */,
+				055FD8D326E22A210034048C /* Common.xcconfig */,
+				055FD8D426E22A210034048C /* Debug - ccache.xcconfig */,
+				055FD8D526E22A210034048C /* Debug.xcconfig */,
+				055FD8D626E22A210034048C /* Release.xcconfig */,
+				055FD8D726E22A210034048C /* README.md */,
+				055FD8D826E22A210034048C /* Release - Library.xcconfig */,
+				055FD8D926E22A210034048C /* Common */,
+				055FD90026E22A210034048C /* Debug - Library.xcconfig */,
+				055FD90126E22A210034048C /* .gitignore */,
+				055FD90226E22A210034048C /* Scripts */,
+				055FD90526E22A210034048C /* Debug - zld.xcconfig */,
+			);
+			name = xcconfig;
+			path = Submodules/xcconfig;
+			sourceTree = "<group>";
+		};
+		055FD8D926E22A210034048C /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				055FD8DA26E22A210034048C /* Signing.xcconfig */,
+				055FD8DB26E22A210034048C /* Architectures.xcconfig */,
+				055FD8DC26E22A210034048C /* Static-Analyzer */,
+				055FD8E426E22A210034048C /* Deployment.xcconfig */,
+				055FD8E526E22A210034048C /* Build-Options.xcconfig */,
+				055FD8E626E22A210034048C /* Swift-Compiler.xcconfig */,
+				055FD8E726E22A210034048C /* Static-Analyzer.xcconfig */,
+				055FD8E826E22A210034048C /* Swift-Compiler */,
+				055FD8ED26E22A210034048C /* Search-Paths.xcconfig */,
+				055FD8EE26E22A210034048C /* Apple-LLVM.xcconfig */,
+				055FD8EF26E22A210034048C /* Apple-LLVM */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		055FD8DC26E22A210034048C /* Static-Analyzer */ = {
+			isa = PBXGroup;
+			children = (
+				055FD8DD26E22A210034048C /* Issues.xcconfig */,
+				055FD8DE26E22A210034048C /* Issues */,
+			);
+			path = "Static-Analyzer";
+			sourceTree = "<group>";
+		};
+		055FD8DE26E22A210034048C /* Issues */ = {
+			isa = PBXGroup;
+			children = (
+				055FD8DF26E22A210034048C /* Apple-APIs.xcconfig */,
+				055FD8E026E22A210034048C /* Generic-Issues.xcconfig */,
+				055FD8E126E22A210034048C /* Security.xcconfig */,
+				055FD8E226E22A210034048C /* Objective-C.xcconfig */,
+				055FD8E326E22A210034048C /* Analysis-Policy.xcconfig */,
+			);
+			path = Issues;
+			sourceTree = "<group>";
+		};
+		055FD8E826E22A210034048C /* Swift-Compiler */ = {
+			isa = PBXGroup;
+			children = (
+				055FD8E926E22A210034048C /* Warnings-Policies.xcconfig */,
+				055FD8EA26E22A210034048C /* Code-Generation.xcconfig */,
+				055FD8EB26E22A210034048C /* Language.xcconfig */,
+				055FD8EC26E22A210034048C /* General.xcconfig */,
+			);
+			path = "Swift-Compiler";
+			sourceTree = "<group>";
+		};
+		055FD8EF26E22A210034048C /* Apple-LLVM */ = {
+			isa = PBXGroup;
+			children = (
+				055FD8F026E22A210034048C /* Language */,
+				055FD8F426E22A210034048C /* Code-Generation.xcconfig */,
+				055FD8F526E22A210034048C /* Address-Sanitizer.xcconfig */,
+				055FD8F626E22A210034048C /* Language.xcconfig */,
+				055FD8F726E22A210034048C /* Warnings.xcconfig */,
+				055FD8F826E22A210034048C /* Undefined-Behavior-Sanitizer.xcconfig */,
+				055FD8F926E22A210034048C /* Warning-Policies.xcconfig */,
+				055FD8FA26E22A210034048C /* Warnings */,
+				055FD8FF26E22A210034048C /* Preprocessing.xcconfig */,
+			);
+			path = "Apple-LLVM";
+			sourceTree = "<group>";
+		};
+		055FD8F026E22A210034048C /* Language */ = {
+			isa = PBXGroup;
+			children = (
+				055FD8F126E22A210034048C /* Modules.xcconfig */,
+				055FD8F226E22A210034048C /* Objective-C.xcconfig */,
+				055FD8F326E22A210034048C /* C++.xcconfig */,
+			);
+			path = Language;
+			sourceTree = "<group>";
+		};
+		055FD8FA26E22A210034048C /* Warnings */ = {
+			isa = PBXGroup;
+			children = (
+				055FD8FB26E22A210034048C /* Objective-C-ARC.xcconfig */,
+				055FD8FC26E22A210034048C /* Objective-C.xcconfig */,
+				055FD8FD26E22A210034048C /* C++.xcconfig */,
+				055FD8FE26E22A210034048C /* All-Languages.xcconfig */,
+			);
+			path = Warnings;
+			sourceTree = "<group>";
+		};
+		055FD90226E22A210034048C /* Scripts */ = {
+			isa = PBXGroup;
+			children = (
+				055FD90326E22A210034048C /* ccache-config.sh */,
+				055FD90426E22A210034048C /* ccache.sh */,
+			);
+			path = Scripts;
+			sourceTree = "<group>";
+		};
+		055FD90726E22A250034048C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				055FD90B26E22A250034048C /* GitKit.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		055FD90C26E22A5E0034048C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		055FD8BC26E2299A0034048C /* Fetcher */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 055FD8CB26E2299C0034048C /* Build configuration list for PBXNativeTarget "Fetcher" */;
+			buildPhases = (
+				055FD8B926E2299A0034048C /* Sources */,
+				055FD8BA26E2299A0034048C /* Frameworks */,
+				055FD8BB26E2299A0034048C /* Resources */,
+				055FD90F26E22A5E0034048C /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Fetcher;
+			productName = Fetcher;
+			productReference = 055FD8BD26E2299A0034048C /* Fetcher.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		055FD8B526E2299A0034048C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1250;
+				LastUpgradeCheck = 1250;
+				TargetAttributes = {
+					055FD8BC26E2299A0034048C = {
+						CreatedOnToolsVersion = 12.5.1;
+					};
+				};
+			};
+			buildConfigurationList = 055FD8B826E2299A0034048C /* Build configuration list for PBXProject "Fetcher" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 055FD8B426E2299A0034048C;
+			productRefGroup = 055FD8BE26E2299A0034048C /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 055FD90726E22A250034048C /* Products */;
+					ProjectRef = 055FD90626E22A250034048C /* GitKit.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				055FD8BC26E2299A0034048C /* Fetcher */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		055FD90B26E22A250034048C /* GitKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = GitKit.framework;
+			remoteRef = 055FD90A26E22A250034048C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		055FD8BB26E2299A0034048C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				055FD8C626E2299C0034048C /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		055FD8B926E2299A0034048C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				055FD8C126E2299A0034048C /* ApplicationDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		055FD8C426E2299C0034048C /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				055FD8C526E2299C0034048C /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		055FD8C926E2299C0034048C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 055FD8D526E22A210034048C /* Debug.xcconfig */;
+			buildSettings = {
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+			};
+			name = Debug;
+		};
+		055FD8CA26E2299C0034048C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 055FD8D626E22A210034048C /* Release.xcconfig */;
+			buildSettings = {
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+			};
+			name = Release;
+		};
+		055FD8CC26E2299C0034048C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Fetcher/Fetcher.entitlements;
+				INFOPLIST_FILE = Fetcher/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.xs-labs.Fetcher";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		055FD8CD26E2299C0034048C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Fetcher/Fetcher.entitlements;
+				INFOPLIST_FILE = Fetcher/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.xs-labs.Fetcher";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		055FD8B826E2299A0034048C /* Build configuration list for PBXProject "Fetcher" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				055FD8C926E2299C0034048C /* Debug */,
+				055FD8CA26E2299C0034048C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		055FD8CB26E2299C0034048C /* Build configuration list for PBXNativeTarget "Fetcher" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				055FD8CC26E2299C0034048C /* Debug */,
+				055FD8CD26E2299C0034048C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 055FD8B526E2299A0034048C /* Project object */;
+}
