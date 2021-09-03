@@ -137,6 +137,7 @@
                                     </tableColumn>
                                 </tableColumns>
                                 <connections>
+                                    <action trigger="doubleAction" selector="open:" target="-2" id="Wqm-W3-cIT"/>
                                     <binding destination="Xdc-Fu-6e1" name="content" keyPath="arrangedObjects" id="MVi-27-zem"/>
                                     <binding destination="Xdc-Fu-6e1" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="MVi-27-zem" id="j2G-Iz-geW"/>
                                     <binding destination="Xdc-Fu-6e1" name="sortDescriptors" keyPath="sortDescriptors" previousBinding="j2G-Iz-geW" id="bPb-QL-UFq"/>

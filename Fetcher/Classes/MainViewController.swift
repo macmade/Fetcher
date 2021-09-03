@@ -50,6 +50,17 @@ public class MainViewController: NSViewController
         ]
     }
     
+    @IBAction private func open( _ sender: Any? )
+    {
+        guard let selected = self.arrayController.selectedObjects.first as? RepositoryItem else
+        {
+            return
+        }
+        
+        NSWorkspace.shared.open( selected.repository.url )
+        ApplicationDelegate.shared?.closePopover( sender )
+    }
+    
     private func reload()
     {
         if self.updating

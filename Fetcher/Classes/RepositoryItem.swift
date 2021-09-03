@@ -27,7 +27,7 @@ import GitKit
 
 public class RepositoryItem: NSObject
 {
-    private var repository: Repository
+    public var repository: Repository
     
     @objc public dynamic let name: String
     @objc public dynamic let path: String

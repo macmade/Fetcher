@@ -41,6 +41,11 @@ import GitHubUpdates
     
     @IBOutlet private var updater: GitHubUpdater!
     
+    public static var shared: ApplicationDelegate?
+    {
+        NSApp.delegate as? ApplicationDelegate
+    }
+    
     public func applicationDidFinishLaunching( _ notification: Notification )
     {
         self.startAtLogin               = NSApp.isLoginItemEnabled()
@@ -111,6 +116,11 @@ import GitHubUpdates
             }
             #endif
         }
+    }
+    
+    @IBAction public func closePopover( _ sender: Any? )
+    {
+        self.popover?.close()
     }
     
     @IBAction public func showPopover( _ sender: Any? )
