@@ -42,10 +42,10 @@ public class RepositoryItem: NSObject
     {
         do
         {
-            self.repository = try Repository( url: url )
-            self.path       = url.deletingLastPathComponent().path
-            self.name       = url.lastPathComponent
-            self.icon       = NSWorkspace.shared.icon( forFile: url.path )
+            self.repository    = try Repository( url: url )
+            self.path          = url.deletingLastPathComponent().path
+            self.name          = url.lastPathComponent
+            self.icon          = RepositoryItem.icon( for: url )
         }
         catch let error as GitKit.Error
         {
@@ -63,5 +63,35 @@ public class RepositoryItem: NSObject
             
             return nil
         }
+    }
+    
+    private class func icon( for url: URL ) -> NSImage?
+    {
+        if let enumerator = FileManager.default.enumerator( atPath: url.path )
+        {
+            for sub in enumerator
+            {
+                enumerator.skipDescendents()
+                
+                guard let name = sub as? String else
+                {
+                    continue
+                }
+                
+                let url = url.appendingPathComponent( name )
+                
+                if ( url.lastPathComponent as NSString ).pathExtension == "xcodeproj"
+                {
+                    return NSImage( named: "Xcode" )
+                }
+            }
+        }
+        
+        if FileManager.default.fileExists( atPath: url.appendingPathComponent( ".vscode" ).path )
+        {
+            return NSImage( named: "VSCode" )
+        }
+        
+        return NSImage( named: "Public" )
     }
 }

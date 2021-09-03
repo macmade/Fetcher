@@ -25,6 +25,9 @@
 		055FD94026E257CD0034048C /* StatusIconTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 055FD93F26E257CD0034048C /* StatusIconTemplate.pdf */; };
 		055FD94226E25B580034048C /* Icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 055FD94126E25B580034048C /* Icon.icns */; };
 		055FD94426E260020034048C /* RepositoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055FD94326E260020034048C /* RepositoryItem.swift */; };
+		0580506B26E2C98100845F70 /* Xcode.icns in Resources */ = {isa = PBXBuildFile; fileRef = 0580506926E2C98100845F70 /* Xcode.icns */; };
+		0580506C26E2C98100845F70 /* VSCode.icns in Resources */ = {isa = PBXBuildFile; fileRef = 0580506A26E2C98100845F70 /* VSCode.icns */; };
+		0580506E26E2CB4000845F70 /* Public.icns in Resources */ = {isa = PBXBuildFile; fileRef = 0580506D26E2CB4000845F70 /* Public.icns */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -132,6 +135,9 @@
 		055FD93F26E257CD0034048C /* StatusIconTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = StatusIconTemplate.pdf; sourceTree = "<group>"; };
 		055FD94126E25B580034048C /* Icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Icon.icns; sourceTree = "<group>"; };
 		055FD94326E260020034048C /* RepositoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryItem.swift; sourceTree = "<group>"; };
+		0580506926E2C98100845F70 /* Xcode.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Xcode.icns; sourceTree = "<group>"; };
+		0580506A26E2C98100845F70 /* VSCode.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = VSCode.icns; sourceTree = "<group>"; };
+		0580506D26E2CB4000845F70 /* Public.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Public.icns; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -358,6 +364,9 @@
 		055FD93E26E257CD0034048C /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				0580506D26E2CB4000845F70 /* Public.icns */,
+				0580506A26E2C98100845F70 /* VSCode.icns */,
+				0580506926E2C98100845F70 /* Xcode.icns */,
 				055FD94126E25B580034048C /* Icon.icns */,
 				055FD93F26E257CD0034048C /* StatusIconTemplate.pdf */,
 			);
@@ -457,11 +466,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0580506B26E2C98100845F70 /* Xcode.icns in Resources */,
 				055FD91C26E22B3A0034048C /* MainMenu.xib in Resources */,
 				055FD93626E22D7C0034048C /* MainViewController.xib in Resources */,
 				055FD94026E257CD0034048C /* StatusIconTemplate.pdf in Resources */,
 				055FD94226E25B580034048C /* Icon.icns in Resources */,
 				055FD93B26E22EE90034048C /* PreferencesWindowController.xib in Resources */,
+				0580506C26E2C98100845F70 /* VSCode.icns in Resources */,
+				0580506E26E2CB4000845F70 /* Public.icns in Resources */,
 				055FD91F26E22B4F0034048C /* AboutWindowController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
