@@ -14,6 +14,8 @@
 		055FD91C26E22B3A0034048C /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 055FD91826E22B3A0034048C /* MainMenu.xib */; };
 		055FD91F26E22B4F0034048C /* AboutWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 055FD91D26E22B4F0034048C /* AboutWindowController.xib */; };
 		055FD92426E22BB60034048C /* NSApplication+LaunchServices.m in Sources */ = {isa = PBXBuildFile; fileRef = 055FD92226E22BB60034048C /* NSApplication+LaunchServices.m */; };
+		055FD92E26E22C490034048C /* GitHubUpdates.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 055FD92B26E22C410034048C /* GitHubUpdates.framework */; };
+		055FD92F26E22C490034048C /* GitHubUpdates.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 055FD92B26E22C410034048C /* GitHubUpdates.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -24,6 +26,20 @@
 			remoteGlobalIDString = 055FD8A426E218B50034048C;
 			remoteInfo = GitKit;
 		};
+		055FD92A26E22C410034048C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 055FD92526E22C410034048C /* GitHubUpdates.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 05F82B251EF32EA700EC8A93;
+			remoteInfo = GitHubUpdates;
+		};
+		055FD92C26E22C410034048C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 055FD92526E22C410034048C /* GitHubUpdates.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0555EBA01EF3DDA10016167F;
+			remoteInfo = Relauncher;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -33,6 +49,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				055FD92F26E22C490034048C /* GitHubUpdates.framework in Embed Frameworks */,
 				055FD90E26E22A5E0034048C /* GitKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -96,6 +113,7 @@
 		055FD92126E22BB60034048C /* Fetcher-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Fetcher-Bridging-Header.h"; sourceTree = "<group>"; };
 		055FD92226E22BB60034048C /* NSApplication+LaunchServices.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSApplication+LaunchServices.m"; sourceTree = "<group>"; };
 		055FD92326E22BB60034048C /* NSApplication+LaunchServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSApplication+LaunchServices.h"; sourceTree = "<group>"; };
+		055FD92526E22C410034048C /* GitHubUpdates.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GitHubUpdates.xcodeproj; path = Submodules/GitHubUpdates/GitHubUpdates.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +121,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				055FD92E26E22C490034048C /* GitHubUpdates.framework in Frameworks */,
 				055FD90D26E22A5E0034048C /* GitKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -113,6 +132,7 @@
 		055FD8B426E2299A0034048C = {
 			isa = PBXGroup;
 			children = (
+				055FD92526E22C410034048C /* GitHubUpdates.xcodeproj */,
 				055FD90626E22A250034048C /* GitKit.xcodeproj */,
 				055FD8D126E22A210034048C /* xcconfig */,
 				055FD8BF26E2299A0034048C /* Fetcher */,
@@ -300,6 +320,15 @@
 			path = UI;
 			sourceTree = "<group>";
 		};
+		055FD92626E22C410034048C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				055FD92B26E22C410034048C /* GitHubUpdates.framework */,
+				055FD92D26E22C410034048C /* Relauncher */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -349,6 +378,10 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = 055FD92626E22C410034048C /* Products */;
+					ProjectRef = 055FD92526E22C410034048C /* GitHubUpdates.xcodeproj */;
+				},
+				{
 					ProductGroup = 055FD90726E22A250034048C /* Products */;
 					ProjectRef = 055FD90626E22A250034048C /* GitKit.xcodeproj */;
 				},
@@ -366,6 +399,20 @@
 			fileType = wrapper.framework;
 			path = GitKit.framework;
 			remoteRef = 055FD90A26E22A250034048C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		055FD92B26E22C410034048C /* GitHubUpdates.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = GitHubUpdates.framework;
+			remoteRef = 055FD92A26E22C410034048C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		055FD92D26E22C410034048C /* Relauncher */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = Relauncher;
+			remoteRef = 055FD92C26E22C410034048C /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
