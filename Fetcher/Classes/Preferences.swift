@@ -29,6 +29,7 @@ import Cocoa
     @objc public dynamic                var lastStart:           Date?
     @objc public dynamic                var autoCheckForUpdates: Bool       = true
     @objc public private( set ) dynamic var paths:               [ String ] = []
+    @objc public dynamic                var smartOpen:           Bool       = true
     
     @objc public static let shared = Preferences()
     

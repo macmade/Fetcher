@@ -33,6 +33,16 @@ public class RepositoryItem: NSObject
     @objc public dynamic let path: String
     @objc public dynamic let icon: NSImage?
     
+    public var hasXcodeProject: Bool
+    {
+        RepositoryItem.xcodeProject( for: self.repository.url ) != nil
+    }
+    
+    public var hasVSCode: Bool
+    {
+        FileManager.default.fileExists( atPath: self.repository.url.appendingPathComponent( ".vscode" ).path )
+    }
+    
     public convenience init?( path: String )
     {
         self.init( url: URL( fileURLWithPath: path ) )
@@ -65,26 +75,69 @@ public class RepositoryItem: NSObject
         }
     }
     
+    public func open()
+    {
+        if Preferences.shared.smartOpen
+        {
+            if let xcode = RepositoryItem.xcodeProject( for: self.repository.url )
+            {
+                NSWorkspace.shared.open( xcode )
+                
+                return
+            }
+            
+            if self.hasVSCode
+            {
+                let config               = NSWorkspace.OpenConfiguration()
+                config.activates         = true
+                config.addsToRecentItems = true
+                config.hides             = false
+                config.hidesOthers       = false
+                
+                if let vsCode = Application.applicationWithBundleID( "com.microsoft.VSCode" )
+                {
+                    NSWorkspace.shared.open( [ self.repository.url ] , withApplicationAt: vsCode.url, configuration: config, completionHandler: nil )
+                }
+                
+                return
+            }
+        }
+        
+        NSWorkspace.shared.open( self.repository.url )
+    }
+    
+    private class func xcodeProject( for url: URL ) -> URL?
+    {
+        guard let enumerator = FileManager.default.enumerator( atPath: url.path ) else
+        {
+            return nil
+        }
+        
+        for sub in enumerator
+        {
+            enumerator.skipDescendents()
+            
+            guard let name = sub as? String else
+            {
+                continue
+            }
+            
+            let url = url.appendingPathComponent( name )
+            
+            if ( url.lastPathComponent as NSString ).pathExtension == "xcodeproj"
+            {
+                return url
+            }
+        }
+        
+        return nil
+    }
+    
     private class func icon( for url: URL ) -> NSImage?
     {
-        if let enumerator = FileManager.default.enumerator( atPath: url.path )
+        if let _ = RepositoryItem.xcodeProject( for: url )
         {
-            for sub in enumerator
-            {
-                enumerator.skipDescendents()
-                
-                guard let name = sub as? String else
-                {
-                    continue
-                }
-                
-                let url = url.appendingPathComponent( name )
-                
-                if ( url.lastPathComponent as NSString ).pathExtension == "xcodeproj"
-                {
-                    return NSImage( named: "Xcode" )
-                }
-            }
+            return NSImage( named: "Xcode" )
         }
         
         if FileManager.default.fileExists( atPath: url.appendingPathComponent( ".vscode" ).path )

@@ -79,7 +79,7 @@ public class MainViewController: NSViewController
             return
         }
         
-        NSWorkspace.shared.open( selected.repository.url )
+        selected.open()
         ApplicationDelegate.shared?.closePopover( sender )
     }
     

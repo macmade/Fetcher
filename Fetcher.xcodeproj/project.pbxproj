@@ -28,6 +28,7 @@
 		0580506B26E2C98100845F70 /* Xcode.icns in Resources */ = {isa = PBXBuildFile; fileRef = 0580506926E2C98100845F70 /* Xcode.icns */; };
 		0580506C26E2C98100845F70 /* VSCode.icns in Resources */ = {isa = PBXBuildFile; fileRef = 0580506A26E2C98100845F70 /* VSCode.icns */; };
 		0580506E26E2CB4000845F70 /* Public.icns in Resources */ = {isa = PBXBuildFile; fileRef = 0580506D26E2CB4000845F70 /* Public.icns */; };
+		0580507726E2CFE300845F70 /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0580507626E2CFE300845F70 /* Application.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -138,6 +139,7 @@
 		0580506926E2C98100845F70 /* Xcode.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Xcode.icns; sourceTree = "<group>"; };
 		0580506A26E2C98100845F70 /* VSCode.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = VSCode.icns; sourceTree = "<group>"; };
 		0580506D26E2CB4000845F70 /* Public.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Public.icns; sourceTree = "<group>"; };
+		0580507626E2CFE300845F70 /* Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -336,6 +338,7 @@
 				055FD93C26E249360034048C /* FolderItem.swift */,
 				055FD93226E22D5A0034048C /* MainViewController.swift */,
 				055FD94326E260020034048C /* RepositoryItem.swift */,
+				0580507626E2CFE300845F70 /* Application.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -485,6 +488,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0580507726E2CFE300845F70 /* Application.swift in Sources */,
 				055FD93826E22EC90034048C /* PreferencesWindowController.swift in Sources */,
 				055FD93D26E249360034048C /* FolderItem.swift in Sources */,
 				055FD92426E22BB60034048C /* NSApplication+LaunchServices.m in Sources */,
