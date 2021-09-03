@@ -26,6 +26,8 @@ import Cocoa
 
 public class PreferencesWindowController: NSWindowController
 {
+    @IBOutlet private var arrayController: NSArrayController!
+    
     public override var windowNibName: NSNib.Name?
     {
         "PreferencesWindowController"
@@ -34,5 +36,79 @@ public class PreferencesWindowController: NSWindowController
     public override func windowDidLoad()
     {
         super.windowDidLoad()
+        self.reload()
+    }
+    
+    private func reload()
+    {
+        if let existing = self.arrayController.content as? [ FolderItem ]
+        {
+            self.arrayController.remove( contentsOf: existing )
+        }
+        
+        self.arrayController.add( contentsOf: Preferences.shared.paths.map { FolderItem( path: $0 ) } )
+    }
+    
+    @IBAction private func addRemoveFolder( _ sender: Any? )
+    {
+        guard let control = sender as? NSSegmentedControl else
+        {
+            NSSound.beep()
+            
+            return
+        }
+        
+        if control.selectedSegment == 0
+        {
+            self.addFolder()
+        }
+        else if control.selectedSegment == 1
+        {
+            self.removeFolder()
+        }
+        else
+        {
+            NSSound.beep()
+        }
+    }
+    
+    private func addFolder()
+    {
+        guard let window = self.window else
+        {
+            NSSound.beep()
+            
+            return
+        }
+        
+        let panel                     = NSOpenPanel()
+        panel.canChooseFiles          = false
+        panel.canChooseDirectories    = true
+        panel.allowsMultipleSelection = false
+        panel.canCreateDirectories    = true
+        
+        panel.beginSheetModal( for: window )
+        {
+            guard let url = panel.url, $0 == .OK else
+            {
+                return
+            }
+            
+            Preferences.shared.addPath( url.path )
+            self.reload()
+        }
+    }
+    
+    private func removeFolder()
+    {
+        guard let selected = self.arrayController.selectedObjects.first as? FolderItem else
+        {
+            NSSound.beep()
+            
+            return
+        }
+        
+        Preferences.shared.removePath( selected.path )
+        self.reload()
     }
 }

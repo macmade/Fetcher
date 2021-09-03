@@ -26,11 +26,30 @@ import Cocoa
 
 @objc public class Preferences: NSObject
 {
-    @objc public dynamic var lastStart:           Date?
-    @objc public dynamic var autoCheckForUpdates: Bool       = true
-    @objc public dynamic var paths:               [ String ] = []
+    @objc public dynamic                var lastStart:           Date?
+    @objc public dynamic                var autoCheckForUpdates: Bool       = true
+    @objc public private( set ) dynamic var paths:               [ String ] = []
     
     @objc public static let shared = Preferences()
+    
+    public func addPath( _ path: String )
+    {
+        if self.paths.contains( path )
+        {
+            return
+        }
+        
+        self.willChangeValue( for: \.paths )
+        self.paths.append( path )
+        self.didChangeValue( for: \.paths )
+    }
+    
+    public func removePath( _ path: String )
+    {
+        self.willChangeValue( for: \.paths )
+        self.paths.removeAll { $0 == path }
+        self.didChangeValue( for: \.paths )
+    }
     
     override init()
     {

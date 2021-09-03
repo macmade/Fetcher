@@ -99,6 +99,8 @@ import GitHubUpdates
         {
             self.showPreferencesWindow( nil )
         }
+        
+        self.showPreferencesWindow( nil )
     }
     
     @IBAction func showPreferencesWindow( _ sender: Any? )
