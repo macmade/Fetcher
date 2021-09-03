@@ -95,17 +95,22 @@ import GitHubUpdates
         
         self.observations.append( contentsOf: [ o1, o2 ] )
         
+        self.automaticallyCheckForUpdates = Preferences.shared.autoCheckForUpdates
+        Preferences.shared.lastStart      = Date()
+        
         if Preferences.shared.paths.count == 0
         {
             self.showPreferencesWindow( nil )
         }
-        
-        #if DEBUG
-        self.showPopover( nil )
-        #endif
-        
-        self.automaticallyCheckForUpdates = Preferences.shared.autoCheckForUpdates
-        Preferences.shared.lastStart      = Date()
+        else
+        {
+            #if DEBUG
+            DispatchQueue.main.asyncAfter( deadline: .now() + .milliseconds( 500 ) )
+            {
+                self.showPopover( nil )
+            }
+            #endif
+        }
     }
     
     @IBAction public func showPopover( _ sender: Any? )

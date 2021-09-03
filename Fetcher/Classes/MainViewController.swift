@@ -26,6 +26,12 @@ import Cocoa
 
 public class MainViewController: NSViewController
 {
+    private let queue = DispatchQueue( label: "com.xs-labs.Fetcher.UpdateQueue" )
+    
+    @objc private dynamic var updating = false
+    
+    @IBOutlet private var arrayController: NSArrayController!
+    
     public override var nibName: NSNib.Name?
     {
         "MainViewController"
@@ -34,5 +40,88 @@ public class MainViewController: NSViewController
     public override func viewDidLoad()
     {
         super.viewDidLoad()
+        self.reload()
+        
+        self.title = "Fetcher"
+    }
+    
+    private func reload()
+    {
+        if self.updating
+        {
+            return
+        }
+        
+        self.queue.async
+        {
+            var paths: [ String ] = []
+            
+            DispatchQueue.main.sync
+            {
+                paths         = Preferences.shared.paths
+                self.updating = true
+            }
+            
+            var items: [ RepositoryItem ] = []
+            
+            paths.forEach
+            {
+                items.append( contentsOf: self.findRepositories( in: $0 ) )
+            }
+            
+            DispatchQueue.main.sync
+            {
+                if let existing = self.arrayController.content as? [ RepositoryItem ]
+                {
+                    self.arrayController.remove( contentsOf: existing )
+                }
+                
+                self.arrayController.add( contentsOf: items )
+                
+                self.updating = false
+            }
+        }
+    }
+    
+    private func findRepositories( in path: String ) -> [ RepositoryItem ]
+    {
+        var isDir: ObjCBool = false
+        
+        guard FileManager.default.fileExists( atPath: path, isDirectory: &isDir ), isDir.boolValue else
+        {
+            return []
+        }
+        
+        guard let enumerator = FileManager.default.enumerator( atPath: path ) else
+        {
+            return []
+        }
+        
+        var items: [ RepositoryItem ] = []
+        
+        for i in enumerator
+        {
+            enumerator.skipDescendents()
+            
+            guard let name = i as? String else
+            {
+                continue
+            }
+            
+            let url = URL( fileURLWithPath: path ).appendingPathComponent( name )
+            let git = url.appendingPathComponent( ".git" )
+            
+            guard FileManager.default.fileExists( atPath: git.path, isDirectory: &isDir ), isDir.boolValue else
+            {
+                continue
+            }
+            
+            if let item = RepositoryItem( url: url )
+            {
+                items.append( item )
+            }
+        }
+        
+        return items
     }
 }
