@@ -16,6 +16,7 @@
 		055FD92426E22BB60034048C /* NSApplication+LaunchServices.m in Sources */ = {isa = PBXBuildFile; fileRef = 055FD92226E22BB60034048C /* NSApplication+LaunchServices.m */; };
 		055FD92E26E22C490034048C /* GitHubUpdates.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 055FD92B26E22C410034048C /* GitHubUpdates.framework */; };
 		055FD92F26E22C490034048C /* GitHubUpdates.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 055FD92B26E22C410034048C /* GitHubUpdates.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		055FD93126E22D190034048C /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055FD93026E22D190034048C /* Preferences.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,6 +115,7 @@
 		055FD92226E22BB60034048C /* NSApplication+LaunchServices.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSApplication+LaunchServices.m"; sourceTree = "<group>"; };
 		055FD92326E22BB60034048C /* NSApplication+LaunchServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSApplication+LaunchServices.h"; sourceTree = "<group>"; };
 		055FD92526E22C410034048C /* GitHubUpdates.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GitHubUpdates.xcodeproj; path = Submodules/GitHubUpdates/GitHubUpdates.xcodeproj; sourceTree = "<group>"; };
+		055FD93026E22D190034048C /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -307,6 +309,7 @@
 				055FD91626E22B3A0034048C /* ApplicationDelegate.swift */,
 				055FD92326E22BB60034048C /* NSApplication+LaunchServices.h */,
 				055FD92226E22BB60034048C /* NSApplication+LaunchServices.m */,
+				055FD93026E22D190034048C /* Preferences.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -436,6 +439,7 @@
 			files = (
 				055FD92426E22BB60034048C /* NSApplication+LaunchServices.m in Sources */,
 				055FD91A26E22B3A0034048C /* AboutWindowController.swift in Sources */,
+				055FD93126E22D190034048C /* Preferences.swift in Sources */,
 				055FD91B26E22B3A0034048C /* ApplicationDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

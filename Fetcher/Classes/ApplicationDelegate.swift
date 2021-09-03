@@ -23,9 +23,18 @@
  ******************************************************************************/
 
 import Cocoa
+import GitHubUpdates
 
 @main class ApplicationDelegate: NSObject, NSApplicationDelegate
 {
+    private var statusItem:             NSStatusItem?
+    private var aboutWindowController = AboutWindowController()
+    
+    @objc public dynamic var startAtLogin:                 Bool = false
+    @objc public dynamic var automaticallyCheckForUpdates: Bool = false
+    
+    @IBOutlet private var updater: GitHubUpdater!
+    
     func applicationDidFinishLaunching( _ notification: Notification )
     {}
 }
