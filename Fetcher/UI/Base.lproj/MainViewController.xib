@@ -208,6 +208,13 @@
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="bDx-aA-pHG"/>
+                <menuItem title="Refresh" id="Mog-sh-Fb8">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="reload:" target="-2" id="nQk-t2-gLh"/>
+                    </connections>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="Oks-Ak-RGN"/>
                 <menuItem title="Check for Updates..." id="5gO-Vz-dhU">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
@@ -220,7 +227,7 @@
                         <action selector="showPreferencesWindow:" target="-1" id="7ct-nM-mtf"/>
                     </connections>
                 </menuItem>
-                <menuItem isSeparatorItem="YES" id="Oks-Ak-RGN"/>
+                <menuItem isSeparatorItem="YES" id="HY0-xX-ITW"/>
                 <menuItem title="Quit" keyEquivalent="q" id="nWJ-tI-M4Y">
                     <connections>
                         <action selector="terminate:" target="-1" id="rb1-SA-efv"/>

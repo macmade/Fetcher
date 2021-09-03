@@ -33,6 +33,8 @@ public class MainViewController: NSViewController
     @IBOutlet private var mainMenu:        NSMenu!
     @IBOutlet private var arrayController: NSArrayController!
     
+    private var observations = [ NSKeyValueObservation ]()
+    
     public override var nibName: NSNib.Name?
     {
         "MainViewController"
@@ -41,7 +43,7 @@ public class MainViewController: NSViewController
     public override func viewDidLoad()
     {
         super.viewDidLoad()
-        self.reload()
+        self.reload( nil )
         
         self.title                           = "Fetcher"
         self.arrayController.sortDescriptors =
@@ -49,6 +51,13 @@ public class MainViewController: NSViewController
             NSSortDescriptor( key: "name", ascending: true, selector: #selector( NSString.localizedCaseInsensitiveCompare( _: ) ) ),
             NSSortDescriptor( key: "path", ascending: true, selector: #selector( NSString.localizedCaseInsensitiveCompare( _: ) ) ),
         ]
+        
+        let o1 = Preferences.shared.observe( \.paths )
+        {
+            [ weak self ] _, _ in self?.reload( nil )
+        }
+        
+        self.observations.append( contentsOf: [ o1 ] )
     }
     
     @IBAction private func showMenu( _ sender: Any? )
@@ -74,7 +83,7 @@ public class MainViewController: NSViewController
         ApplicationDelegate.shared?.closePopover( sender )
     }
     
-    private func reload()
+    @IBAction private func reload( _ sender: Any? )
     {
         if self.updating
         {
