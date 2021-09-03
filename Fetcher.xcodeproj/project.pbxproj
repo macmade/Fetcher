@@ -17,6 +17,8 @@
 		055FD92E26E22C490034048C /* GitHubUpdates.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 055FD92B26E22C410034048C /* GitHubUpdates.framework */; };
 		055FD92F26E22C490034048C /* GitHubUpdates.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 055FD92B26E22C410034048C /* GitHubUpdates.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		055FD93126E22D190034048C /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055FD93026E22D190034048C /* Preferences.swift */; };
+		055FD93326E22D5A0034048C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055FD93226E22D5A0034048C /* MainViewController.swift */; };
+		055FD93626E22D7C0034048C /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 055FD93426E22D7C0034048C /* MainViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,6 +118,8 @@
 		055FD92326E22BB60034048C /* NSApplication+LaunchServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSApplication+LaunchServices.h"; sourceTree = "<group>"; };
 		055FD92526E22C410034048C /* GitHubUpdates.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GitHubUpdates.xcodeproj; path = Submodules/GitHubUpdates/GitHubUpdates.xcodeproj; sourceTree = "<group>"; };
 		055FD93026E22D190034048C /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
+		055FD93226E22D5A0034048C /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		055FD93526E22D7C0034048C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -310,6 +314,7 @@
 				055FD92326E22BB60034048C /* NSApplication+LaunchServices.h */,
 				055FD92226E22BB60034048C /* NSApplication+LaunchServices.m */,
 				055FD93026E22D190034048C /* Preferences.swift */,
+				055FD93226E22D5A0034048C /* MainViewController.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -319,6 +324,7 @@
 			children = (
 				055FD91D26E22B4F0034048C /* AboutWindowController.xib */,
 				055FD91826E22B3A0034048C /* MainMenu.xib */,
+				055FD93426E22D7C0034048C /* MainViewController.xib */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -426,6 +432,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				055FD91C26E22B3A0034048C /* MainMenu.xib in Resources */,
+				055FD93626E22D7C0034048C /* MainViewController.xib in Resources */,
 				055FD91F26E22B4F0034048C /* AboutWindowController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -441,6 +448,7 @@
 				055FD91A26E22B3A0034048C /* AboutWindowController.swift in Sources */,
 				055FD93126E22D190034048C /* Preferences.swift in Sources */,
 				055FD91B26E22B3A0034048C /* ApplicationDelegate.swift in Sources */,
+				055FD93326E22D5A0034048C /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -461,6 +469,14 @@
 				055FD91E26E22B4F0034048C /* Base */,
 			);
 			name = AboutWindowController.xib;
+			sourceTree = "<group>";
+		};
+		055FD93426E22D7C0034048C /* MainViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				055FD93526E22D7C0034048C /* Base */,
+			);
+			name = MainViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
