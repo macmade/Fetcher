@@ -13,6 +13,7 @@
 		055FD91B26E22B3A0034048C /* ApplicationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055FD91626E22B3A0034048C /* ApplicationDelegate.swift */; };
 		055FD91C26E22B3A0034048C /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 055FD91826E22B3A0034048C /* MainMenu.xib */; };
 		055FD91F26E22B4F0034048C /* AboutWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 055FD91D26E22B4F0034048C /* AboutWindowController.xib */; };
+		055FD92426E22BB60034048C /* NSApplication+LaunchServices.m in Sources */ = {isa = PBXBuildFile; fileRef = 055FD92226E22BB60034048C /* NSApplication+LaunchServices.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +93,9 @@
 		055FD91626E22B3A0034048C /* ApplicationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationDelegate.swift; sourceTree = "<group>"; };
 		055FD91926E22B3A0034048C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		055FD91E26E22B4F0034048C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/AboutWindowController.xib; sourceTree = "<group>"; };
+		055FD92126E22BB60034048C /* Fetcher-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Fetcher-Bridging-Header.h"; sourceTree = "<group>"; };
+		055FD92226E22BB60034048C /* NSApplication+LaunchServices.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSApplication+LaunchServices.m"; sourceTree = "<group>"; };
+		055FD92326E22BB60034048C /* NSApplication+LaunchServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSApplication+LaunchServices.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +142,7 @@
 		055FD8CE26E229BF0034048C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				055FD92126E22BB60034048C /* Fetcher-Bridging-Header.h */,
 				055FD8C726E2299C0034048C /* Info.plist */,
 				055FD8C826E2299C0034048C /* Fetcher.entitlements */,
 			);
@@ -280,6 +285,8 @@
 			children = (
 				055FD91526E22B3A0034048C /* AboutWindowController.swift */,
 				055FD91626E22B3A0034048C /* ApplicationDelegate.swift */,
+				055FD92326E22BB60034048C /* NSApplication+LaunchServices.h */,
+				055FD92226E22BB60034048C /* NSApplication+LaunchServices.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -325,6 +332,7 @@
 				TargetAttributes = {
 					055FD8BC26E2299A0034048C = {
 						CreatedOnToolsVersion = 12.5.1;
+						LastSwiftMigration = 1250;
 					};
 				};
 			};
@@ -379,6 +387,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				055FD92426E22BB60034048C /* NSApplication+LaunchServices.m in Sources */,
 				055FD91A26E22B3A0034048C /* AboutWindowController.swift in Sources */,
 				055FD91B26E22B3A0034048C /* ApplicationDelegate.swift in Sources */,
 			);
@@ -425,6 +434,7 @@
 		055FD8CC26E2299C0034048C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Fetcher/Fetcher.entitlements;
 				INFOPLIST_FILE = Fetcher/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -433,12 +443,16 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.xs-labs.Fetcher";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Fetcher/Fetcher-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
 		055FD8CD26E2299C0034048C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Fetcher/Fetcher.entitlements;
 				INFOPLIST_FILE = Fetcher/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -447,6 +461,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.xs-labs.Fetcher";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Fetcher/Fetcher-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
