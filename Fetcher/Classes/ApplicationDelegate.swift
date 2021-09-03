@@ -29,6 +29,9 @@ import GitHubUpdates
 {
     private var statusItem:             NSStatusItem?
     private var aboutWindowController = AboutWindowController()
+    private var mainViewController    = MainViewController()
+    private var observations          = [ NSKeyValueObservation ]()
+    private var updateCheckTimer:       Timer?
     
     @objc public dynamic var startAtLogin:                 Bool = false
     @objc public dynamic var automaticallyCheckForUpdates: Bool = false
@@ -36,5 +39,58 @@ import GitHubUpdates
     @IBOutlet private var updater: GitHubUpdater!
     
     func applicationDidFinishLaunching( _ notification: Notification )
-    {}
+    {
+        self.startAtLogin               = NSApp.isLoginItemEnabled()
+        self.statusItem                 = NSStatusBar.system.statusItem( withLength: NSStatusItem.squareLength )
+        self.statusItem?.button?.image  = NSImage( named: "StatusIconTemplate" )
+        
+        let _ = self.mainViewController.view
+        
+        let o1 = self.observe( \.startAtLogin )
+        {
+            [ weak self ] o, c in guard let self = self else { return }
+            
+            if self.startAtLogin
+            {
+                NSApp.enableLoginItem()
+            }
+            else
+            {
+                NSApp.disableLoginItem()
+            }
+        }
+        
+        let o2 = self.observe( \.automaticallyCheckForUpdates )
+        {
+            [ weak self ] o, c in guard let self = self else { return }
+            
+            Preferences.shared.autoCheckForUpdates = self.automaticallyCheckForUpdates
+            
+            if self.automaticallyCheckForUpdates
+            {
+                self.updateCheckTimer?.invalidate()
+                
+                self.updateCheckTimer = Timer( timeInterval: 3600, repeats: true )
+                {
+                    _ in self.updater.checkForUpdatesInBackground()
+                }
+                
+                DispatchQueue.main.asyncAfter( deadline: .now() + .seconds( 5 ) )
+                {
+                    self.updater.checkForUpdatesInBackground()
+                }
+            }
+            else
+            {
+                self.updateCheckTimer?.invalidate()
+                
+                self.updateCheckTimer = nil
+            }
+        }
+        
+        self.observations.append( contentsOf: [ o1, o2 ] )
+        
+        self.automaticallyCheckForUpdates = Preferences.shared.autoCheckForUpdates
+        Preferences.shared.lastStart      = Date()
+    }
 }
