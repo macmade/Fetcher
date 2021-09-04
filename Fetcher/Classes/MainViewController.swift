@@ -24,13 +24,14 @@
 
 import Cocoa
 
-public class MainViewController: NSViewController
+public class MainViewController: NSViewController, NSMenuDelegate
 {
     private let queue = DispatchQueue( label: "com.xs-labs.Fetcher.UpdateQueue" )
     
     @objc private dynamic var updating = false
     
     @IBOutlet private var mainMenu:        NSMenu!
+    @IBOutlet private var tableView:       NSTableView!
     @IBOutlet private var arrayController: NSArrayController!
     
     private var observations = [ NSKeyValueObservation ]()
@@ -161,5 +162,99 @@ public class MainViewController: NSViewController
         }
         
         return items
+    }
+    
+    public func menuWillOpen( _ menu: NSMenu )
+    {
+        menu.items.forEach
+        {
+            if self.clickedItem == nil
+            {
+                $0.isEnabled = false
+            }
+            else if $0.action == #selector( revealInFinder( _: ) )
+            {
+                $0.isEnabled = true
+            }
+            else if $0.action == #selector( openInTerminal( _: ) )
+            {
+                $0.isEnabled = true
+            }
+            else if $0.action == #selector( openInXcode( _: ) )
+            {
+                $0.isEnabled = Application.applicationWithBundleID( "com.apple.dt.Xcode" ) != nil && ( self.clickedItem?.hasXcodeProject ?? false )
+            }
+            else if $0.action == #selector( openInVSCode( _: ) )
+            {
+                $0.isEnabled = Application.applicationWithBundleID( "com.microsoft.VSCode" ) != nil
+            }
+            else if $0.action == #selector( openInBBEdit( _: ) )
+            {
+                $0.isEnabled = Application.applicationWithBundleID( "com.barebones.bbedit" ) != nil
+            }
+            else
+            {
+                $0.isEnabled = false
+            }
+        }
+    }
+    
+    private var clickedItem: RepositoryItem?
+    {
+        let clicked = self.tableView.clickedRow
+        
+        guard let arranged = self.arrayController.arrangedObjects as? [ RepositoryItem ],
+              clicked > 0,
+              clicked < arranged.count
+        else
+        {
+            return nil
+        }
+        
+        return arranged[ clicked ]
+    }
+    
+    @IBAction private func revealInFinder( _ sender: Any? )
+    {
+        guard let item = self.clickedItem else
+        {
+            NSSound.beep()
+            
+            return
+        }
+        
+        item.reveal()
+    }
+    
+    @IBAction private func openInTerminal( _ sender: Any? )
+    {
+        if self.clickedItem?.openInTerminal() ?? false == false
+        {
+            NSSound.beep()
+        }
+    }
+    
+    @IBAction private func openInXcode( _ sender: Any? )
+    {
+        if self.clickedItem?.openInXcode() ?? false == false
+        {
+            NSSound.beep()
+        }
+    }
+    
+    @IBAction private func openInBBEdit( _ sender: Any? )
+    {
+        if self.clickedItem?.openInBBEdit() ?? false == false
+        {
+            NSSound.beep()
+        }
+    }
+    
+    @IBAction private func openInVSCode( _ sender: Any? )
+    {
+        if self.clickedItem?.openInVSCode() ?? false == false
+        {
+            NSSound.beep()
+        }
     }
 }

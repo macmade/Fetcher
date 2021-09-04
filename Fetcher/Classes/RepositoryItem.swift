@@ -98,29 +98,97 @@ public class RepositoryItem: NSObject
         }
     }
     
+    public func reveal()
+    {
+        NSWorkspace.shared.open( self.repository.url )
+    }
+    
+    @discardableResult
+    public func openIn( bundleID: String ) -> Bool
+    {
+        guard let app = Application.applicationWithBundleID( bundleID ) else
+        {
+            return false
+        }
+        
+        return self.openIn( app: app, url: self.repository.url )
+    }
+    
+    @discardableResult
+    public func openIn( bundleID: String, url: URL ) -> Bool
+    {
+        guard let app = Application.applicationWithBundleID( bundleID ) else
+        {
+            return false
+        }
+        
+        return self.openIn( app: app, url: url )
+    }
+    
+    @discardableResult
+    public func openIn( app: Application ) -> Bool
+    {
+        self.openIn( app: app, url: self.repository.url )
+    }
+    
+    @discardableResult
+    public func openIn( app: Application, url: URL ) -> Bool
+    {
+        let config               = NSWorkspace.OpenConfiguration()
+        config.activates         = true
+        config.addsToRecentItems = true
+        config.hides             = false
+        config.hidesOthers       = false
+        
+        NSWorkspace.shared.open( [ url ] , withApplicationAt: app.url, configuration: config, completionHandler: nil )
+        
+        return true
+    }
+    
+    @discardableResult
+    public func openInTerminal() -> Bool
+    {
+        self.openIn( bundleID: "com.apple.Terminal" )
+    }
+    
+    @discardableResult
+    public func openInBBEdit() -> Bool
+    {
+        self.openIn( bundleID: "com.barebones.bbedit" )
+    }
+    
+    @discardableResult
+    public func openInVSCode() -> Bool
+    {
+        self.openIn( bundleID: "com.microsoft.VSCode" )
+    }
+    
+    @discardableResult
+    public func openInXcode() -> Bool
+    {
+        if let project = RepositoryItem.xcodeProject( for: self.repository.url )
+        {
+            return self.openIn( bundleID: "com.apple.dt.Xcode", url: project )
+        }
+        
+        return false
+    }
+    
     public func open()
     {
         if Preferences.shared.smartOpen
         {
-            if let xcode = RepositoryItem.xcodeProject( for: self.repository.url )
+            if let project = RepositoryItem.xcodeProject( for: self.repository.url ),
+               let xcode   = Application.applicationWithBundleID( "com.apple.dt.Xcode" )
             {
-                NSWorkspace.shared.open( xcode )
+                self.openIn( app: xcode, url: project )
                 
                 return
             }
             
             if self.hasVSCode
             {
-                let config               = NSWorkspace.OpenConfiguration()
-                config.activates         = true
-                config.addsToRecentItems = true
-                config.hides             = false
-                config.hidesOthers       = false
-                
-                if let vsCode = Application.applicationWithBundleID( "com.microsoft.VSCode" )
-                {
-                    NSWorkspace.shared.open( [ self.repository.url ] , withApplicationAt: vsCode.url, configuration: config, completionHandler: nil )
-                }
+                self.openInVSCode()
                 
                 return
             }
