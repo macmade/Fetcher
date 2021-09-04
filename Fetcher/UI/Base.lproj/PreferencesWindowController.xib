@@ -191,6 +191,9 @@
                                         </items>
                                     </menu>
                                 </popUpButtonCell>
+                                <connections>
+                                    <binding destination="-2" name="selectedIndex" keyPath="self.sorting" id="dx2-D1-Wme"/>
+                                </connections>
                             </popUpButton>
                             <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="mQ8-qO-wAP">
                                 <rect key="frame" x="20" y="76" width="560" height="5"/>

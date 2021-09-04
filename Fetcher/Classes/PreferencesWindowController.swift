@@ -28,6 +28,19 @@ public class PreferencesWindowController: NSWindowController
 {
     @IBOutlet private var arrayController: NSArrayController!
     
+    @objc public private( set ) dynamic var sorting: Int = 0
+    {
+        didSet
+        {
+            if self.sorting != Preferences.shared.sorting
+            {
+                Preferences.shared.sorting = self.sorting
+            }
+        }
+    }
+    
+    private var observations = [ NSKeyValueObservation ]()
+    
     public override var windowNibName: NSNib.Name?
     {
         "PreferencesWindowController"
@@ -37,6 +50,17 @@ public class PreferencesWindowController: NSWindowController
     {
         super.windowDidLoad()
         self.reload()
+        
+        self.sorting = Preferences.shared.sorting
+        
+        let o1 = Preferences.shared.observe( \.sorting )
+        {
+            [ weak self ] o, c in guard let self = self else { return }
+            
+            self.sorting = Preferences.shared.sorting
+        }
+        
+        self.observations.append( contentsOf: [ o1 ] )
     }
     
     private func reload()
