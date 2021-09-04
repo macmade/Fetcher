@@ -29,6 +29,9 @@
 		0580506C26E2C98100845F70 /* VSCode.icns in Resources */ = {isa = PBXBuildFile; fileRef = 0580506A26E2C98100845F70 /* VSCode.icns */; };
 		0580506E26E2CB4000845F70 /* Public.icns in Resources */ = {isa = PBXBuildFile; fileRef = 0580506D26E2CB4000845F70 /* Public.icns */; };
 		0580507726E2CFE300845F70 /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0580507626E2CFE300845F70 /* Application.swift */; };
+		0580509026E3EDA900845F70 /* IsZero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0580508F26E3EDA900845F70 /* IsZero.swift */; };
+		0580509526E3EECD00845F70 /* AheadTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0580509426E3EECD00845F70 /* AheadTransformer.swift */; };
+		0580509726E3EEDA00845F70 /* BehindTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0580509626E3EEDA00845F70 /* BehindTransformer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -140,6 +143,9 @@
 		0580506A26E2C98100845F70 /* VSCode.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = VSCode.icns; sourceTree = "<group>"; };
 		0580506D26E2CB4000845F70 /* Public.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Public.icns; sourceTree = "<group>"; };
 		0580507626E2CFE300845F70 /* Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
+		0580508F26E3EDA900845F70 /* IsZero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsZero.swift; sourceTree = "<group>"; };
+		0580509426E3EECD00845F70 /* AheadTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AheadTransformer.swift; sourceTree = "<group>"; };
+		0580509626E3EEDA00845F70 /* BehindTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BehindTransformer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -339,6 +345,9 @@
 				055FD93226E22D5A0034048C /* MainViewController.swift */,
 				055FD94326E260020034048C /* RepositoryItem.swift */,
 				0580507626E2CFE300845F70 /* Application.swift */,
+				0580508F26E3EDA900845F70 /* IsZero.swift */,
+				0580509426E3EECD00845F70 /* AheadTransformer.swift */,
+				0580509626E3EEDA00845F70 /* BehindTransformer.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -490,9 +499,12 @@
 			files = (
 				0580507726E2CFE300845F70 /* Application.swift in Sources */,
 				055FD93826E22EC90034048C /* PreferencesWindowController.swift in Sources */,
+				0580509526E3EECD00845F70 /* AheadTransformer.swift in Sources */,
 				055FD93D26E249360034048C /* FolderItem.swift in Sources */,
 				055FD92426E22BB60034048C /* NSApplication+LaunchServices.m in Sources */,
 				055FD91A26E22B3A0034048C /* AboutWindowController.swift in Sources */,
+				0580509026E3EDA900845F70 /* IsZero.swift in Sources */,
+				0580509726E3EEDA00845F70 /* BehindTransformer.swift in Sources */,
 				055FD93126E22D190034048C /* Preferences.swift in Sources */,
 				055FD91B26E22B3A0034048C /* ApplicationDelegate.swift in Sources */,
 				055FD94426E260020034048C /* RepositoryItem.swift in Sources */,

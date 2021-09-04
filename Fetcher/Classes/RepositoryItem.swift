@@ -35,6 +35,8 @@ public class RepositoryItem: NSObject
     @objc public dynamic let head:          String?
     @objc public dynamic let headTextColor: NSColor?
     @objc public dynamic let tooltip:       String?
+    @objc public dynamic let ahead:         Int
+    @objc public dynamic let behind:        Int
     
     public var hasXcodeProject: Bool
     {
@@ -64,7 +66,7 @@ public class RepositoryItem: NSObject
             {
                 switch head
                 {
-                    case .first(  let branch ):
+                    case .first( let branch ):
                         
                         self.head          = branch.name
                         self.headTextColor = NSColor.secondaryLabelColor
@@ -78,11 +80,25 @@ public class RepositoryItem: NSObject
                             self.tooltip = nil
                         }
                         
+                        if let origin = repository.branches.first( where: { $0.name == "origin/\( branch.name )" } )
+                        {
+                            let diff    = branch.graph( with: origin )
+                            self.ahead  = diff?.ahead  ?? 0
+                            self.behind = diff?.behind ?? 0
+                        }
+                        else
+                        {
+                            self.ahead  = 0
+                            self.behind = 0
+                        }
+                        
                     case .second( let commit ):
                         
                         self.head          = String( commit.hash.prefix( 7 ) )
                         self.headTextColor = NSColor.systemOrange
                         self.tooltip       = RepositoryItem.tooltip( for: commit )
+                        self.ahead         = 0
+                        self.behind        = 0
                 }
             }
             else
@@ -90,6 +106,8 @@ public class RepositoryItem: NSObject
                 self.head          = nil
                 self.headTextColor = nil
                 self.tooltip       = nil
+                self.ahead         = 0
+                self.behind        = 0
             }
         }
         catch let error as GitKit.Error
