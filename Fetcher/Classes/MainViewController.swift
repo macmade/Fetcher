@@ -34,7 +34,9 @@ public class MainViewController: NSViewController, NSMenuDelegate
     @IBOutlet private var tableView:       NSTableView!
     @IBOutlet private var arrayController: NSArrayController!
     
-    private var observations = [ NSKeyValueObservation ]()
+    private var initialFetchDone = false
+    private var observations     = [ NSKeyValueObservation ]()
+    private var fetchTimer:        Timer?
     
     public override var nibName: NSNib.Name?
     {
@@ -58,9 +60,44 @@ public class MainViewController: NSViewController, NSMenuDelegate
             [ weak self ] _, _ in self?.updateSortDescriptors()
         }
         
-        self.observations.append( contentsOf: [ o1, o2 ] )
+        let o3 = Preferences.shared.observe( \.fetchInterval )
+        {
+            [ weak self ] _, _ in self?.updateFetchTimer()
+        }
+        
+        self.observations.append( contentsOf: [ o1, o2, o3 ] )
         
         self.updateSortDescriptors()
+    }
+    
+    private func updateFetchTimer()
+    {
+        self.fetchTimer?.invalidate()
+        
+        let seconds     = Preferences.shared.fetchInterval * 60
+        self.fetchTimer = Timer( timeInterval: TimeInterval( seconds ) , repeats: true )
+        {
+            _ in self.fetch()
+        }
+    }
+    
+    @objc private func fetch()
+    {
+        guard let repositories = self.arrayController.content as? [ RepositoryItem ] else
+        {
+            return
+        }
+        
+        repositories.forEach
+        {
+            repository in DispatchQueue.global( qos: .default ).async
+            {
+                repository.repository.remotes.forEach
+                {
+                    $0.fetch()
+                }
+            }
+        }
     }
     
     private func updateSortDescriptors()
@@ -134,6 +171,14 @@ public class MainViewController: NSViewController, NSMenuDelegate
                 }
                 
                 self.arrayController.add( contentsOf: items )
+                
+                if self.initialFetchDone == false
+                {
+                    self.initialFetchDone = true
+                    
+                    self.fetch()
+                    self.updateFetchTimer()
+                }
                 
                 self.updating = false
             }
