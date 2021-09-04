@@ -31,6 +31,7 @@ import Cocoa
     @objc public private( set ) dynamic var paths:               [ String ] = []
     @objc public dynamic                var smartOpen:           Bool       = true
     @objc public dynamic                var sorting:             Int        = 0
+    @objc public dynamic                var openAction:          Int        = 0
     
     @objc public static let shared = Preferences()
     

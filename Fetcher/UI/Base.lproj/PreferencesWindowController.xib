@@ -163,6 +163,9 @@
                                         </items>
                                     </menu>
                                 </popUpButtonCell>
+                                <connections>
+                                    <binding destination="-2" name="selectedIndex" keyPath="self.openAction" id="mRd-41-WQg"/>
+                                </connections>
                             </popUpButton>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BJf-lT-O6m">
                                 <rect key="frame" x="160" y="164" width="99" height="18"/>
@@ -170,6 +173,9 @@
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <binding destination="-2" name="value" keyPath="self.smartOpen" id="pIn-Ja-arh"/>
+                                </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="AQa-GR-jw5">
                                 <rect key="frame" x="18" y="127" width="113" height="16"/>
@@ -204,6 +210,9 @@
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <binding destination="-2" name="value" keyPath="self.startAtLogin" id="yzZ-d6-vAR"/>
+                                </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4wN-on-QFn">
                                 <rect key="frame" x="18" y="19" width="229" height="18"/>
@@ -211,6 +220,9 @@
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <binding destination="-2" name="value" keyPath="self.checkForUpdates" id="aTK-fN-fjb"/>
+                                </connections>
                             </button>
                         </subviews>
                         <constraints>

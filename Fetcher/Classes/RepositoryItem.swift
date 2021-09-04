@@ -249,8 +249,28 @@ public class RepositoryItem: NSObject
                 return
             }
         }
-        
-        NSWorkspace.shared.open( self.repository.url )
+        else if Preferences.shared.openAction == 1
+        {
+            self.openInTerminal()
+        }
+        else if Preferences.shared.openAction == 2
+        {
+            if self.openInVSCode() == false
+            {
+                self.reveal()
+            }
+        }
+        else if Preferences.shared.openAction == 3
+        {
+            if self.openInBBEdit() == false
+            {
+                self.reveal()
+            }
+        }
+        else
+        {
+            self.reveal()
+        }
     }
     
     private class func xcodeProject( for url: URL ) -> URL?

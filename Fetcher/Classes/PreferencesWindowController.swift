@@ -28,7 +28,7 @@ public class PreferencesWindowController: NSWindowController
 {
     @IBOutlet private var arrayController: NSArrayController!
     
-    @objc public private( set ) dynamic var sorting: Int = 0
+    @objc public private( set ) dynamic var sorting = 0
     {
         didSet
         {
@@ -36,6 +36,47 @@ public class PreferencesWindowController: NSWindowController
             {
                 Preferences.shared.sorting = self.sorting
             }
+        }
+    }
+    
+    @objc public private( set ) dynamic var openAction = 0
+    {
+        didSet
+        {
+            if self.openAction != Preferences.shared.openAction
+            {
+                Preferences.shared.openAction = self.openAction
+            }
+        }
+    }
+    
+    @objc public private( set ) dynamic var checkForUpdates = false
+    {
+        didSet
+        {
+            if self.checkForUpdates != Preferences.shared.autoCheckForUpdates
+            {
+                Preferences.shared.autoCheckForUpdates = self.checkForUpdates
+            }
+        }
+    }
+    
+    @objc public private( set ) dynamic var smartOpen = false
+    {
+        didSet
+        {
+            if self.smartOpen != Preferences.shared.smartOpen
+            {
+                Preferences.shared.smartOpen = self.smartOpen
+            }
+        }
+    }
+    
+    @objc public private( set ) dynamic var startAtLogin = false
+    {
+        didSet
+        {
+            NSApp.setLoginItemEnabled( self.startAtLogin )
         }
     }
     
@@ -51,7 +92,11 @@ public class PreferencesWindowController: NSWindowController
         super.windowDidLoad()
         self.reload()
         
-        self.sorting = Preferences.shared.sorting
+        self.sorting         = Preferences.shared.sorting
+        self.checkForUpdates = Preferences.shared.autoCheckForUpdates
+        self.startAtLogin    = NSApp.isLoginItemEnabled()
+        self.smartOpen       = Preferences.shared.smartOpen
+        self.openAction      = Preferences.shared.openAction
         
         let o1 = Preferences.shared.observe( \.sorting )
         {
@@ -60,7 +105,28 @@ public class PreferencesWindowController: NSWindowController
             self.sorting = Preferences.shared.sorting
         }
         
-        self.observations.append( contentsOf: [ o1 ] )
+        let o2 = Preferences.shared.observe( \.autoCheckForUpdates )
+        {
+            [ weak self ] o, c in guard let self = self else { return }
+            
+            self.checkForUpdates = Preferences.shared.autoCheckForUpdates
+        }
+        
+        let o3 = Preferences.shared.observe( \.smartOpen )
+        {
+            [ weak self ] o, c in guard let self = self else { return }
+            
+            self.smartOpen = Preferences.shared.smartOpen
+        }
+        
+        let o4 = Preferences.shared.observe( \.openAction )
+        {
+            [ weak self ] o, c in guard let self = self else { return }
+            
+            self.openAction = Preferences.shared.openAction
+        }
+        
+        self.observations.append( contentsOf: [ o1, o2, o3, o4 ] )
     }
     
     private func reload()
