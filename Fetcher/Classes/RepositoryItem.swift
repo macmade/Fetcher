@@ -29,10 +29,11 @@ public class RepositoryItem: NSObject
 {
     public var repository: Repository
     
-    @objc public dynamic let name: String
-    @objc public dynamic let path: String
-    @objc public dynamic let icon: NSImage?
-    @objc public dynamic let head: String?
+    @objc public dynamic let name:          String
+    @objc public dynamic let path:          String
+    @objc public dynamic let icon:          NSImage?
+    @objc public dynamic let head:          String?
+    @objc public dynamic let headTextColor: NSColor?
     
     public var hasXcodeProject: Bool
     {
@@ -62,13 +63,21 @@ public class RepositoryItem: NSObject
             {
                 switch head
                 {
-                    case .first(  let branch ): self.head = branch.name
-                    case .second( let commit ): self.head = String( commit.hash.prefix( 7 ) )
+                    case .first(  let branch ):
+                        
+                        self.head          = branch.name
+                        self.headTextColor = NSColor.secondaryLabelColor
+                        
+                    case .second( let commit ):
+                        
+                        self.head          = String( commit.hash.prefix( 7 ) )
+                        self.headTextColor = NSColor.systemOrange
                 }
             }
             else
             {
-                self.head = nil
+                self.head          = nil
+                self.headTextColor = nil
             }
         }
         catch let error as GitKit.Error

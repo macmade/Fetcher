@@ -126,6 +126,7 @@
                                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         </textFieldCell>
                                                         <connections>
+                                                            <binding destination="usX-4z-YoN" name="textColor" keyPath="objectValue.headTextColor" id="JSR-aF-njL"/>
                                                             <binding destination="usX-4z-YoN" name="value" keyPath="objectValue.head" id="jO6-gw-NOo"/>
                                                         </connections>
                                                     </textField>
