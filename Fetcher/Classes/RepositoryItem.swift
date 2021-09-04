@@ -27,6 +27,8 @@ import GitKit
 
 public class RepositoryItem: NSObject
 {
+    private static let queue = DispatchQueue( label: "com.xs-labs.Fetcher.StatusQueue", qos: .default, attributes: .concurrent, autoreleaseFrequency: .workItem, target: nil )
+    
     public var repository: Repository
     
     @objc public private( set ) dynamic var name:           String
@@ -38,7 +40,7 @@ public class RepositoryItem: NSObject
     @objc public private( set ) dynamic var lastCommitDate: Date?
     @objc public private( set ) dynamic var ahead           = 0
     @objc public private( set ) dynamic var behind          = 0
-    @objc public private( set ) dynamic var dirty           = false
+    @objc public private( set ) dynamic var isDirty         = false
     
     public var hasXcodeProject: Bool
     {
@@ -92,6 +94,18 @@ public class RepositoryItem: NSObject
                         self.headTextColor  = NSColor.systemOrange
                         self.tooltip        = RepositoryItem.tooltip( for: commit )
                         self.lastCommitDate = commit.date
+                }
+            }
+            
+            super.init()
+            
+            RepositoryItem.queue.async
+            {
+                let dirty = self.repository.isDirty()
+                
+                DispatchQueue.main.async
+                {
+                    self.isDirty = dirty
                 }
             }
         }

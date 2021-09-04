@@ -185,7 +185,7 @@
                                                                         </constraints>
                                                                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSStatusPartiallyAvailable" id="nIQ-Sl-dy7"/>
                                                                         <connections>
-                                                                            <binding destination="usX-4z-YoN" name="hidden" keyPath="objectValue.dirty" id="xNO-Et-drp">
+                                                                            <binding destination="usX-4z-YoN" name="hidden" keyPath="objectValue.isDirty" id="lnF-1r-2lG">
                                                                                 <dictionary key="options">
                                                                                     <string key="NSValueTransformerName">NSNegateBoolean</string>
                                                                                 </dictionary>

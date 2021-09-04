@@ -222,7 +222,7 @@ public class MainViewController: NSViewController, NSMenuDelegate
         let clicked = self.tableView.clickedRow
         
         guard let arranged = self.arrayController.arrangedObjects as? [ RepositoryItem ],
-              clicked > 0,
+              clicked >= 0,
               clicked < arranged.count
         else
         {
