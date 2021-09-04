@@ -66,48 +66,8 @@ public class RepositoryItem: NSObject
             self.name       = url.lastPathComponent
             self.icon       = RepositoryItem.icon( for: url )
             
-            if let head = self.repository.head
-            {
-                switch head
-                {
-                    case .first( let branch ):
-                        
-                        self.head          = branch.name
-                        self.headTextColor = NSColor.secondaryLabelColor
-                        
-                        if let commit = branch.lastCommit
-                        {
-                            self.tooltip        = RepositoryItem.tooltip( for: commit )
-                            self.lastCommitDate = commit.date
-                        }
-                        
-                        if let origin = repository.branches.first( where: { $0.name == "origin/\( branch.name )" } ),
-                           let diff    = branch.graph( with: origin )
-                        {
-                            self.ahead  = diff.ahead
-                            self.behind = diff.behind
-                        }
-                        
-                    case .second( let commit ):
-                        
-                        self.head           = String( commit.hash.prefix( 7 ) )
-                        self.headTextColor  = NSColor.systemOrange
-                        self.tooltip        = RepositoryItem.tooltip( for: commit )
-                        self.lastCommitDate = commit.date
-                }
-            }
-            
             super.init()
-            
-            RepositoryItem.queue.async
-            {
-                let dirty = self.repository.isDirty()
-                
-                DispatchQueue.main.async
-                {
-                    self.isDirty = dirty
-                }
-            }
+            self.update()
         }
         catch let error as GitKit.Error
         {
@@ -124,6 +84,58 @@ public class RepositoryItem: NSObject
             #endif
             
             return nil
+        }
+    }
+    
+    public func update()
+    {
+        self.head           = nil
+        self.headTextColor  = nil
+        self.tooltip        = nil
+        self.lastCommitDate = nil
+        self.ahead          = 0
+        self.behind         = 0
+        self.isDirty        = false
+        
+        if let head = self.repository.head
+        {
+            switch head
+            {
+                case .first( let branch ):
+                    
+                    self.head          = branch.name
+                    self.headTextColor = NSColor.secondaryLabelColor
+                    
+                    if let commit = branch.lastCommit
+                    {
+                        self.tooltip        = RepositoryItem.tooltip( for: commit )
+                        self.lastCommitDate = commit.date
+                    }
+                    
+                    if let origin = repository.branches.first( where: { $0.name == "origin/\( branch.name )" } ),
+                       let diff    = branch.graph( with: origin )
+                    {
+                        self.ahead  = diff.ahead
+                        self.behind = diff.behind
+                    }
+                    
+                case .second( let commit ):
+                    
+                    self.head           = String( commit.hash.prefix( 7 ) )
+                    self.headTextColor  = NSColor.systemOrange
+                    self.tooltip        = RepositoryItem.tooltip( for: commit )
+                    self.lastCommitDate = commit.date
+            }
+        }
+        
+        RepositoryItem.queue.async
+        {
+            let dirty = self.repository.isDirty()
+            
+            DispatchQueue.main.async
+            {
+                self.isDirty = dirty
+            }
         }
     }
     
