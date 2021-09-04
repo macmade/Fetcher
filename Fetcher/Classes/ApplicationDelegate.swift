@@ -201,11 +201,13 @@ import GitHubUpdates
     {
         let window = NSWindow(
             contentRect: self.mainViewController.view.bounds,
-            styleMask:   [ .titled, .closable, .fullSizeContentView ],
+            styleMask:   [ .titled, .closable, .fullSizeContentView, .resizable, .miniaturizable ],
             backing:     .buffered,
             defer:       true
         )
         
+        window.minSize                    = NSMakeSize( self.mainViewController.view.frame.size.width, self.mainViewController.view.frame.size.height )
+        window.maxSize                    = NSMakeSize( self.mainViewController.view.frame.size.width, CGFloat.infinity )
         window.delegate                   = self
         self.popoverWindow                = window
         window.isReleasedWhenClosed       = false
