@@ -28,6 +28,17 @@ public class PreferencesWindowController: NSWindowController
 {
     @IBOutlet private var arrayController: NSArrayController!
     
+    @objc public private( set ) dynamic var fetchInterval = 0
+    {
+        didSet
+        {
+            if self.fetchInterval != Preferences.shared.fetchInterval
+            {
+                Preferences.shared.fetchInterval = self.fetchInterval
+            }
+        }
+    }
+    
     @objc public private( set ) dynamic var sorting = 0
     {
         didSet
@@ -97,6 +108,7 @@ public class PreferencesWindowController: NSWindowController
         self.startAtLogin    = NSApp.isLoginItemEnabled()
         self.smartOpen       = Preferences.shared.smartOpen
         self.openAction      = Preferences.shared.openAction
+        self.fetchInterval   = Preferences.shared.fetchInterval
         
         let o1 = Preferences.shared.observe( \.sorting )
         {
@@ -126,7 +138,14 @@ public class PreferencesWindowController: NSWindowController
             self.openAction = Preferences.shared.openAction
         }
         
-        self.observations.append( contentsOf: [ o1, o2, o3, o4 ] )
+        let o5 = Preferences.shared.observe( \.fetchInterval )
+        {
+            [ weak self ] o, c in guard let self = self else { return }
+            
+            self.fetchInterval = Preferences.shared.fetchInterval
+        }
+        
+        self.observations.append( contentsOf: [ o1, o2, o3, o4, o5 ] )
     }
     
     private func reload()

@@ -16,18 +16,18 @@
         <window title="Fetcher Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" titlebarAppearsTransparent="YES" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" fullSizeContentView="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="196" y="240" width="600" height="500"/>
+            <rect key="contentRect" x="196" y="240" width="600" height="550"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1025"/>
-            <value key="minSize" type="size" width="600" height="500"/>
+            <value key="minSize" type="size" width="600" height="550"/>
             <view key="contentView" wantsLayer="YES" id="EiT-Mj-1SZ">
-                <rect key="frame" x="0.0" y="0.0" width="600" height="500"/>
+                <rect key="frame" x="0.0" y="0.0" width="600" height="550"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <visualEffectView blendingMode="behindWindow" material="underWindowBackground" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="Kgq-f7-ZUs">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="500"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="550"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ixx-4c-hFQ">
-                                <rect key="frame" x="18" y="444" width="219" height="16"/>
+                                <rect key="frame" x="18" y="494" width="219" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Paths to search for Git repositories:" id="dv6-rZ-Vcd">
                                     <font key="font" usesAppearanceFont="YES"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -35,13 +35,13 @@
                                 </textFieldCell>
                             </textField>
                             <scrollView autoresizesSubviews="NO" borderType="line" autohidesScrollers="YES" horizontalLineScroll="34" horizontalPageScroll="10" verticalLineScroll="34" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NeQ-zd-XAq">
-                                <rect key="frame" x="20" y="255" width="560" height="181"/>
+                                <rect key="frame" x="20" y="319" width="560" height="167"/>
                                 <clipView key="contentView" autoresizesSubviews="NO" drawsBackground="NO" id="vhZ-Xl-PVD">
-                                    <rect key="frame" x="1" y="1" width="558" height="179"/>
+                                    <rect key="frame" x="1" y="1" width="558" height="165"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView autoresizesSubviews="NO" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" tableStyle="fullWidth" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="34" rowSizeStyle="automatic" usesAutomaticRowHeights="YES" viewBased="YES" id="17g-qP-qYr">
-                                            <rect key="frame" x="0.0" y="0.0" width="558" height="179"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="558" height="165"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
@@ -129,7 +129,7 @@
                                 </scroller>
                             </scrollView>
                             <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fGH-5n-pv6">
-                                <rect key="frame" x="17" y="225" width="71" height="24"/>
+                                <rect key="frame" x="17" y="289" width="71" height="24"/>
                                 <segmentedCell key="cell" borderStyle="border" alignment="left" segmentDistribution="fillEqually" style="rounded" trackingMode="momentary" id="Atv-YQ-Cxg">
                                     <font key="font" metaFont="system"/>
                                     <segments>
@@ -141,6 +141,32 @@
                                     <action selector="addRemoveFolder:" target="-2" id="Wtx-GP-X40"/>
                                 </connections>
                             </segmentedControl>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eUX-Dj-WLK">
+                                <rect key="frame" x="18" y="255" width="136" height="16"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Fetch Remotes every:" id="vbM-Z9-lht">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <popUpButton wantsLayer="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0Mk-q4-N4D">
+                                <rect key="frame" x="17" y="223" width="107" height="25"/>
+                                <popUpButtonCell key="cell" type="push" title="5 minutes" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="5" imageScaling="proportionallyDown" inset="2" selectedItem="z3U-gi-I0k" id="2O2-lB-Lqp">
+                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="menu"/>
+                                    <menu key="menu" id="NOk-Ix-mDZ">
+                                        <items>
+                                            <menuItem title="5 minutes" state="on" tag="5" id="z3U-gi-I0k"/>
+                                            <menuItem title="10 minutes" tag="10" id="XjE-JZ-jRu"/>
+                                            <menuItem title="30 minutes" tag="30" id="XfB-e1-vqi"/>
+                                            <menuItem title="hour" tag="60" id="eJA-E3-ocv"/>
+                                        </items>
+                                    </menu>
+                                </popUpButtonCell>
+                                <connections>
+                                    <binding destination="-2" name="selectedTag" keyPath="self.fetchInterval" id="3ds-HB-aQg"/>
+                                </connections>
+                            </popUpButton>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Xbn-Sd-nsx">
                                 <rect key="frame" x="18" y="191" width="127" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Double Click Action:" id="jMM-Bw-Ops">
@@ -231,12 +257,16 @@
                             <constraint firstItem="AQa-GR-jw5" firstAttribute="top" secondItem="IeT-F1-X64" secondAttribute="bottom" constant="20" id="5Ky-F1-L0e"/>
                             <constraint firstItem="v6T-M5-LME" firstAttribute="leading" secondItem="Kgq-f7-ZUs" secondAttribute="leading" constant="20" symbolic="YES" id="9MO-gl-g9T"/>
                             <constraint firstItem="Ixx-4c-hFQ" firstAttribute="leading" secondItem="Kgq-f7-ZUs" secondAttribute="leading" constant="20" symbolic="YES" id="9V6-bZ-SL4"/>
+                            <constraint firstItem="eUX-Dj-WLK" firstAttribute="top" secondItem="fGH-5n-pv6" secondAttribute="bottom" constant="20" id="AaF-ak-YQM"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ac0-hJ-cvw" secondAttribute="trailing" constant="20" symbolic="YES" id="B9d-P2-57d"/>
                             <constraint firstItem="4wN-on-QFn" firstAttribute="leading" secondItem="Kgq-f7-ZUs" secondAttribute="leading" constant="20" symbolic="YES" id="DmN-lH-YQQ"/>
                             <constraint firstItem="AQa-GR-jw5" firstAttribute="leading" secondItem="Kgq-f7-ZUs" secondAttribute="leading" constant="20" symbolic="YES" id="ECd-3t-F7s"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="0Mk-q4-N4D" secondAttribute="trailing" constant="20" symbolic="YES" id="F2Z-Y8-bYz"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="eUX-Dj-WLK" secondAttribute="trailing" constant="20" symbolic="YES" id="G03-BB-P7X"/>
                             <constraint firstItem="IeT-F1-X64" firstAttribute="top" secondItem="Xbn-Sd-nsx" secondAttribute="bottom" constant="8" symbolic="YES" id="JUd-r2-CcD"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="4wN-on-QFn" secondAttribute="trailing" constant="20" symbolic="YES" id="Mid-kn-jTf"/>
                             <constraint firstItem="mQ8-qO-wAP" firstAttribute="leading" secondItem="Kgq-f7-ZUs" secondAttribute="leading" constant="20" symbolic="YES" id="Nbe-cQ-lZi"/>
+                            <constraint firstItem="Xbn-Sd-nsx" firstAttribute="top" secondItem="0Mk-q4-N4D" secondAttribute="bottom" constant="20" id="Rmn-Ir-Gbe"/>
                             <constraint firstAttribute="trailing" secondItem="mQ8-qO-wAP" secondAttribute="trailing" constant="20" symbolic="YES" id="XXb-na-qO7"/>
                             <constraint firstItem="fGH-5n-pv6" firstAttribute="leading" secondItem="Kgq-f7-ZUs" secondAttribute="leading" constant="20" symbolic="YES" id="Yiy-is-kru"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Ixx-4c-hFQ" secondAttribute="trailing" constant="20" symbolic="YES" id="b8j-qu-zs9"/>
@@ -247,12 +277,14 @@
                             <constraint firstAttribute="trailing" secondItem="NeQ-zd-XAq" secondAttribute="trailing" constant="20" symbolic="YES" id="eb5-KD-82W"/>
                             <constraint firstItem="ac0-hJ-cvw" firstAttribute="top" secondItem="AQa-GR-jw5" secondAttribute="bottom" constant="8" symbolic="YES" id="ehh-I6-dSh"/>
                             <constraint firstItem="Ixx-4c-hFQ" firstAttribute="top" secondItem="Kgq-f7-ZUs" secondAttribute="top" constant="40" id="jAP-QA-KCy"/>
+                            <constraint firstItem="0Mk-q4-N4D" firstAttribute="top" secondItem="eUX-Dj-WLK" secondAttribute="bottom" constant="8" symbolic="YES" id="jp2-1d-StG"/>
                             <constraint firstItem="v6T-M5-LME" firstAttribute="top" secondItem="mQ8-qO-wAP" secondAttribute="bottom" constant="20" id="k5s-2C-cn8"/>
-                            <constraint firstItem="Xbn-Sd-nsx" firstAttribute="top" secondItem="fGH-5n-pv6" secondAttribute="bottom" constant="20" id="key-yR-u48"/>
+                            <constraint firstItem="eUX-Dj-WLK" firstAttribute="leading" secondItem="Kgq-f7-ZUs" secondAttribute="leading" constant="20" symbolic="YES" id="kFi-t2-qah"/>
                             <constraint firstItem="IeT-F1-X64" firstAttribute="leading" secondItem="Kgq-f7-ZUs" secondAttribute="leading" constant="20" symbolic="YES" id="oZT-6d-JSQ"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="fGH-5n-pv6" secondAttribute="trailing" constant="20" symbolic="YES" id="pqQ-zd-n0e"/>
                             <constraint firstItem="BJf-lT-O6m" firstAttribute="leading" secondItem="IeT-F1-X64" secondAttribute="trailing" constant="8" symbolic="YES" id="qKu-YP-CYg"/>
                             <constraint firstItem="fGH-5n-pv6" firstAttribute="top" secondItem="NeQ-zd-XAq" secondAttribute="bottom" constant="8" symbolic="YES" id="rP6-f9-eaT"/>
+                            <constraint firstItem="0Mk-q4-N4D" firstAttribute="leading" secondItem="Kgq-f7-ZUs" secondAttribute="leading" constant="20" symbolic="YES" id="s8n-6d-7zj"/>
                             <constraint firstItem="ac0-hJ-cvw" firstAttribute="leading" secondItem="Kgq-f7-ZUs" secondAttribute="leading" constant="20" symbolic="YES" id="tmN-kM-FyC"/>
                             <constraint firstItem="Xbn-Sd-nsx" firstAttribute="leading" secondItem="Kgq-f7-ZUs" secondAttribute="leading" constant="20" symbolic="YES" id="tyd-gO-Wbd"/>
                             <constraint firstAttribute="bottom" secondItem="4wN-on-QFn" secondAttribute="bottom" constant="20" symbolic="YES" id="uHb-nk-PrV"/>
