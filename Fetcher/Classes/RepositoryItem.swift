@@ -253,6 +253,12 @@ public class RepositoryItem: NSObject
     
     private class func tooltip( for commit: Commit ) -> String
     {
-        return String( format: "%@ <%@>:\n\n%@", commit.author.name, commit.author.email, commit.message?.trimmingCharacters( in: .whitespacesAndNewlines ) ?? "<empty>" )
+        return String(
+            format: "Author: %@ <%@>\nHash: %@\n\n%@",
+            commit.author.name,
+            commit.author.email,
+            String( commit.hash.prefix( 7 ) ),
+            commit.message?.trimmingCharacters( in: .whitespacesAndNewlines ) ?? "<empty>"
+        )
     }
 }
