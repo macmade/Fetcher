@@ -123,7 +123,7 @@
                                                                 </connections>
                                                             </textField>
                                                             <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BtM-pi-AQc">
-                                                                <rect key="frame" x="287" y="0.0" width="103" height="42"/>
+                                                                <rect key="frame" x="263" y="0.0" width="127" height="42"/>
                                                                 <subviews>
                                                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="500" translatesAutoresizingMaskIntoConstraints="NO" id="c0n-MG-zD5">
                                                                         <rect key="frame" x="-2" y="14" width="33" height="14"/>
@@ -177,13 +177,30 @@
                                                                             </binding>
                                                                         </connections>
                                                                     </textField>
+                                                                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vgK-rn-f1O">
+                                                                        <rect key="frame" x="111" y="13" width="16" height="16"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="16" id="2y6-DL-Kth"/>
+                                                                            <constraint firstAttribute="width" constant="16" id="Mu5-3a-JfO"/>
+                                                                        </constraints>
+                                                                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSStatusPartiallyAvailable" id="nIQ-Sl-dy7"/>
+                                                                        <connections>
+                                                                            <binding destination="usX-4z-YoN" name="hidden" keyPath="objectValue.dirty" id="xNO-Et-drp">
+                                                                                <dictionary key="options">
+                                                                                    <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                                                </dictionary>
+                                                                            </binding>
+                                                                        </connections>
+                                                                    </imageView>
                                                                 </subviews>
                                                                 <visibilityPriorities>
                                                                     <integer value="1000"/>
                                                                     <integer value="1000"/>
                                                                     <integer value="1000"/>
+                                                                    <integer value="1000"/>
                                                                 </visibilityPriorities>
                                                                 <customSpacing>
+                                                                    <real value="3.4028234663852886e+38"/>
                                                                     <real value="3.4028234663852886e+38"/>
                                                                     <real value="3.4028234663852886e+38"/>
                                                                     <real value="3.4028234663852886e+38"/>
@@ -365,5 +382,6 @@
     <resources>
         <image name="NSActionTemplate" width="15" height="15"/>
         <image name="NSFolder" width="32" height="32"/>
+        <image name="NSStatusPartiallyAvailable" width="16" height="16"/>
     </resources>
 </document>

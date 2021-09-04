@@ -46,19 +46,37 @@ public class MainViewController: NSViewController, NSMenuDelegate
         super.viewDidLoad()
         self.reload( nil )
         
-        self.title                           = "Fetcher"
-        self.arrayController.sortDescriptors =
-        [
-            NSSortDescriptor( key: "name", ascending: true, selector: #selector( NSString.localizedCaseInsensitiveCompare( _: ) ) ),
-            NSSortDescriptor( key: "path", ascending: true, selector: #selector( NSString.localizedCaseInsensitiveCompare( _: ) ) ),
-        ]
+        self.title = "Fetcher"
         
         let o1 = Preferences.shared.observe( \.paths )
         {
             [ weak self ] _, _ in self?.reload( nil )
         }
         
-        self.observations.append( contentsOf: [ o1 ] )
+        let o2 = Preferences.shared.observe( \.sorting )
+        {
+            [ weak self ] _, _ in self?.updateSortDescriptors()
+        }
+        
+        self.observations.append( contentsOf: [ o1, o2 ] )
+        
+        self.updateSortDescriptors()
+    }
+    
+    private func updateSortDescriptors()
+    {
+        var descriptors =
+        [
+            NSSortDescriptor( key: "name", ascending: true, selector: #selector( NSString.localizedCaseInsensitiveCompare( _: ) ) ),
+            NSSortDescriptor( key: "path", ascending: true, selector: #selector( NSString.localizedCaseInsensitiveCompare( _: ) ) ),
+        ]
+        
+        if Preferences.shared.sorting == 0
+        {
+            descriptors.insert( NSSortDescriptor( key: "lastCommitDate", ascending: false ), at: 0 )
+        }
+        
+        self.arrayController.sortDescriptors = descriptors
     }
     
     @IBAction private func showMenu( _ sender: Any? )

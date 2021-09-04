@@ -29,14 +29,16 @@ public class RepositoryItem: NSObject
 {
     public var repository: Repository
     
-    @objc public private( set ) dynamic var name:          String
-    @objc public private( set ) dynamic var path:          String
-    @objc public private( set ) dynamic var icon:          NSImage?
-    @objc public private( set ) dynamic var head:          String?
-    @objc public private( set ) dynamic var headTextColor: NSColor?
-    @objc public private( set ) dynamic var tooltip:       String?
-    @objc public private( set ) dynamic var ahead:         Int = 0
-    @objc public private( set ) dynamic var behind:        Int = 0
+    @objc public private( set ) dynamic var name:           String
+    @objc public private( set ) dynamic var path:           String
+    @objc public private( set ) dynamic var icon:           NSImage?
+    @objc public private( set ) dynamic var head:           String?
+    @objc public private( set ) dynamic var headTextColor:  NSColor?
+    @objc public private( set ) dynamic var tooltip:        String?
+    @objc public private( set ) dynamic var lastCommitDate: Date?
+    @objc public private( set ) dynamic var ahead           = 0
+    @objc public private( set ) dynamic var behind          = 0
+    @objc public private( set ) dynamic var dirty           = false
     
     public var hasXcodeProject: Bool
     {
@@ -73,7 +75,8 @@ public class RepositoryItem: NSObject
                         
                         if let commit = branch.lastCommit
                         {
-                            self.tooltip = RepositoryItem.tooltip( for: commit )
+                            self.tooltip        = RepositoryItem.tooltip( for: commit )
+                            self.lastCommitDate = commit.date
                         }
                         
                         if let origin = repository.branches.first( where: { $0.name == "origin/\( branch.name )" } ),
@@ -85,9 +88,10 @@ public class RepositoryItem: NSObject
                         
                     case .second( let commit ):
                         
-                        self.head          = String( commit.hash.prefix( 7 ) )
-                        self.headTextColor = NSColor.systemOrange
-                        self.tooltip       = RepositoryItem.tooltip( for: commit )
+                        self.head           = String( commit.hash.prefix( 7 ) )
+                        self.headTextColor  = NSColor.systemOrange
+                        self.tooltip        = RepositoryItem.tooltip( for: commit )
+                        self.lastCommitDate = commit.date
                 }
             }
         }
