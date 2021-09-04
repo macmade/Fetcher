@@ -253,10 +253,16 @@ public class RepositoryItem: NSObject
     
     private class func tooltip( for commit: Commit ) -> String
     {
+        let formatter                        = DateFormatter()
+        formatter.dateStyle                  = .medium
+        formatter.timeStyle                  = .short
+        formatter.doesRelativeDateFormatting = true
+        
         return String(
-            format: "Author: %@ <%@>\nHash: %@\n\n%@",
+            format: "Author: %@ <%@>\nDate: %@\nHash: %@\n\n%@",
             commit.author.name,
             commit.author.email,
+            formatter.string( from: commit.date ),
             String( commit.hash.prefix( 7 ) ),
             commit.message?.trimmingCharacters( in: .whitespacesAndNewlines ) ?? "<empty>"
         )
