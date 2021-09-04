@@ -27,9 +27,9 @@ import GitHubUpdates
 
 @main class ApplicationDelegate: NSObject, NSApplicationDelegate, NSPopoverDelegate, NSWindowDelegate
 {
-    private var aboutWindowController       = AboutWindowController()
-    private var preferencesWindowController = PreferencesWindowController()
-    private var mainViewController          = MainViewController()
+    private let aboutWindowController       = AboutWindowController()
+    private let preferencesWindowController = PreferencesWindowController()
+    private let mainViewController          = MainViewController()
     private var observations                = [ NSKeyValueObservation ]()
     private var updateCheckTimer:             Timer?
     private var statusItem:                   NSStatusItem?

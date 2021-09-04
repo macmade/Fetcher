@@ -29,14 +29,14 @@ public class RepositoryItem: NSObject
 {
     public var repository: Repository
     
-    @objc public dynamic let name:          String
-    @objc public dynamic let path:          String
-    @objc public dynamic let icon:          NSImage?
-    @objc public dynamic let head:          String?
-    @objc public dynamic let headTextColor: NSColor?
-    @objc public dynamic let tooltip:       String?
-    @objc public dynamic let ahead:         Int
-    @objc public dynamic let behind:        Int
+    @objc public private( set ) dynamic var name:          String
+    @objc public private( set ) dynamic var path:          String
+    @objc public private( set ) dynamic var icon:          NSImage?
+    @objc public private( set ) dynamic var head:          String?
+    @objc public private( set ) dynamic var headTextColor: NSColor?
+    @objc public private( set ) dynamic var tooltip:       String?
+    @objc public private( set ) dynamic var ahead:         Int = 0
+    @objc public private( set ) dynamic var behind:        Int = 0
     
     public var hasXcodeProject: Bool
     {
@@ -75,21 +75,12 @@ public class RepositoryItem: NSObject
                         {
                             self.tooltip = RepositoryItem.tooltip( for: commit )
                         }
-                        else
-                        {
-                            self.tooltip = nil
-                        }
                         
-                        if let origin = repository.branches.first( where: { $0.name == "origin/\( branch.name )" } )
+                        if let origin = repository.branches.first( where: { $0.name == "origin/\( branch.name )" } ),
+                           let diff    = branch.graph( with: origin )
                         {
-                            let diff    = branch.graph( with: origin )
-                            self.ahead  = diff?.ahead  ?? 0
-                            self.behind = diff?.behind ?? 0
-                        }
-                        else
-                        {
-                            self.ahead  = 0
-                            self.behind = 0
+                            self.ahead  = diff.ahead
+                            self.behind = diff.behind
                         }
                         
                     case .second( let commit ):
@@ -97,17 +88,7 @@ public class RepositoryItem: NSObject
                         self.head          = String( commit.hash.prefix( 7 ) )
                         self.headTextColor = NSColor.systemOrange
                         self.tooltip       = RepositoryItem.tooltip( for: commit )
-                        self.ahead         = 0
-                        self.behind        = 0
                 }
-            }
-            else
-            {
-                self.head          = nil
-                self.headTextColor = nil
-                self.tooltip       = nil
-                self.ahead         = 0
-                self.behind        = 0
             }
         }
         catch let error as GitKit.Error
