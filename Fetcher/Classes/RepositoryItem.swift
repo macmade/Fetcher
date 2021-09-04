@@ -113,6 +113,21 @@ public class RepositoryItem: NSObject
         }
     }
     
+    public override func isEqual( _ object: Any?) -> Bool
+    {
+        guard let item = object as? RepositoryItem else
+        {
+            return false
+        }
+        
+        return self.repository == item.repository
+    }
+    
+    public override func isEqual( to object: Any? ) -> Bool
+    {
+        self.isEqual( object )
+    }
+    
     public func reveal()
     {
         NSWorkspace.shared.open( self.repository.url )

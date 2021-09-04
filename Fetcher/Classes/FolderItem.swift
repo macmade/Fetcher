@@ -29,6 +29,7 @@ public class FolderItem: NSObject
     @objc public dynamic let icon: NSImage
     @objc public dynamic let path: String
     @objc public dynamic let name: String
+    @objc public dynamic let url : URL
     
     public convenience init( path: String )
     {
@@ -37,8 +38,24 @@ public class FolderItem: NSObject
     
     public init( url: URL )
     {
+        self.url  = url
         self.path = url.path
         self.name = url.lastPathComponent
         self.icon = NSWorkspace.shared.icon( forFile: url.path )
+    }
+    
+    public override func isEqual( _ object: Any?) -> Bool
+    {
+        guard let item = object as? FolderItem else
+        {
+            return false
+        }
+        
+        return self.url == item.url
+    }
+    
+    public override func isEqual( to object: Any? ) -> Bool
+    {
+        self.isEqual( object )
     }
 }
