@@ -25,7 +25,7 @@
 import Cocoa
 import GitHubUpdates
 
-@main class ApplicationDelegate: NSObject, NSApplicationDelegate
+@main class ApplicationDelegate: NSObject, NSApplicationDelegate, NSPopoverDelegate, NSWindowDelegate
 {
     private var aboutWindowController       = AboutWindowController()
     private var preferencesWindowController = PreferencesWindowController()
@@ -35,6 +35,7 @@ import GitHubUpdates
     private var statusItem:                   NSStatusItem?
     private var popover:                      NSPopover?
     private var popoverTranscientEvent:       Any?
+    private var popoverWindow:                NSWindow?
     
     @objc public dynamic var startAtLogin:                 Bool = false
     @objc public dynamic var automaticallyCheckForUpdates: Bool = false
@@ -125,6 +126,14 @@ import GitHubUpdates
     
     @IBAction public func showPopover( _ sender: Any? )
     {
+        if let window = self.popoverWindow
+        {
+            window.makeKeyAndOrderFront( nil )
+            NSApp.activate( ignoringOtherApps: true )
+            
+            return
+        }
+        
         if self.popover?.isShown ?? false
         {
             self.popover?.close()
@@ -135,6 +144,7 @@ import GitHubUpdates
         self.popover                        = NSPopover()
         self.popover?.contentViewController = self.mainViewController
         self.popover?.behavior              = .applicationDefined
+        self.popover?.delegate              = self
         
         if let button = self.statusItem?.button
         {
@@ -180,5 +190,41 @@ import GitHubUpdates
         self.popover?.close()
         NSApp.activate( ignoringOtherApps: true  )
         self.updater.checkForUpdates( sender )
+    }
+    
+    func popoverShouldDetach( _ popover: NSPopover ) -> Bool
+    {
+        true
+    }
+    
+    func detachableWindow( for popover: NSPopover ) -> NSWindow?
+    {
+        let window = NSWindow(
+            contentRect: self.mainViewController.view.bounds,
+            styleMask:   [ .titled, .closable, .fullSizeContentView ],
+            backing:     .buffered,
+            defer:       true
+        )
+        
+        window.delegate                   = self
+        self.popoverWindow                = window
+        window.isReleasedWhenClosed       = false
+        window.titleVisibility            = .hidden
+        window.titlebarAppearsTransparent = true
+        
+        return window
+    }
+    
+    func windowWillClose( _ notification: Notification )
+    {
+        self.popoverWindow = nil
+    }
+    
+    func windowDidChangeScreen( _ notification: Notification )
+    {
+        self.popoverWindow?.contentViewController = self.mainViewController
+        
+        self.popoverWindow?.makeKeyAndOrderFront( nil )
+        NSApp.activate( ignoringOtherApps: true )
     }
 }
