@@ -34,6 +34,7 @@ public class RepositoryItem: NSObject
     @objc public dynamic let icon:          NSImage?
     @objc public dynamic let head:          String?
     @objc public dynamic let headTextColor: NSColor?
+    @objc public dynamic let tooltip:       String?
     
     public var hasXcodeProject: Bool
     {
@@ -68,16 +69,27 @@ public class RepositoryItem: NSObject
                         self.head          = branch.name
                         self.headTextColor = NSColor.secondaryLabelColor
                         
+                        if let commit = branch.lastCommit
+                        {
+                            self.tooltip = RepositoryItem.tooltip( for: commit )
+                        }
+                        else
+                        {
+                            self.tooltip = nil
+                        }
+                        
                     case .second( let commit ):
                         
                         self.head          = String( commit.hash.prefix( 7 ) )
                         self.headTextColor = NSColor.systemOrange
+                        self.tooltip       = RepositoryItem.tooltip( for: commit )
                 }
             }
             else
             {
                 self.head          = nil
                 self.headTextColor = nil
+                self.tooltip       = nil
             }
         }
         catch let error as GitKit.Error
@@ -237,5 +249,10 @@ public class RepositoryItem: NSObject
         }
         
         return NSImage( named: "Public" )
+    }
+    
+    private class func tooltip( for commit: Commit ) -> String
+    {
+        return String( format: "%@ <%@>:\n\n%@", commit.author.name, commit.author.email, commit.message?.trimmingCharacters( in: .whitespacesAndNewlines ) ?? "<empty>" )
     }
 }
