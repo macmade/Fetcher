@@ -1,18 +1,18 @@
 /*******************************************************************************
  * The MIT License (MIT)
- * 
+ *
  * Copyright (c) 2021 Jean-David Gadina - www.xs-labs.com
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -24,78 +24,40 @@
 
 import Cocoa
 
-public class PreferencesWindowController: NSWindowController
+public class PreferencesWindowController: NSWindowController, NSTableViewDelegate
 {
-    @IBOutlet private var arrayController: NSArrayController!
+    @IBOutlet private var controllers:      NSArrayController!
+    @IBOutlet private var container:        NSView!
+    @IBOutlet private var sidebarContainer: NSView!
+    @IBOutlet private var sidebarWidth:     NSLayoutConstraint!
     
-    @objc public private( set ) dynamic var fetchInterval = 0
+    private var selectionObserver: NSKeyValueObservation?
+    private var animating        = false
+    
+    public convenience init()
     {
-        didSet
-        {
-            if self.fetchInterval != Preferences.shared.fetchInterval
-            {
-                Preferences.shared.fetchInterval = self.fetchInterval
-            }
-        }
+        self.init( controllers:
+            [
+                PreferencesGeneralViewController(),
+                PreferencesPathsViewController(),
+                PreferencesAuthenticationViewController()
+            ]
+        )
     }
     
-    @objc public private( set ) dynamic var sorting = 0
+    public init( controllers: [ PreferencesViewController ] )
     {
-        didSet
-        {
-            if self.sorting != Preferences.shared.sorting
-            {
-                Preferences.shared.sorting = self.sorting
-            }
-        }
+        super.init( window: nil )
+        
+        let _ = self.window
+        
+        controllers.forEach { self.addController( $0 ) }
     }
     
-    @objc public private( set ) dynamic var openAction = 0
+    required init?( coder: NSCoder )
     {
-        didSet
-        {
-            if self.openAction != Preferences.shared.openAction
-            {
-                Preferences.shared.openAction = self.openAction
-            }
-        }
+        nil
     }
-    
-    @objc public private( set ) dynamic var checkForUpdates = false
-    {
-        didSet
-        {
-            if self.checkForUpdates != Preferences.shared.autoCheckForUpdates
-            {
-                Preferences.shared.autoCheckForUpdates = self.checkForUpdates
-            }
-        }
-    }
-    
-    @objc public private( set ) dynamic var smartOpen = false
-    {
-        didSet
-        {
-            if self.smartOpen != Preferences.shared.smartOpen
-            {
-                Preferences.shared.smartOpen = self.smartOpen
-            }
-        }
-    }
-    
-    @objc public private( set ) dynamic var startAtLogin = false
-    {
-        didSet
-        {
-            NSApp.setLoginItemEnabled( self.startAtLogin )
-        }
-    }
-    
-    @objc private dynamic var username: String?
-    @objc private dynamic var password: String?
-    
-    private var keychainItem:  KeychainPassword?
-    private var observations = [ NSKeyValueObservation ]()
     
     public override var windowNibName: NSNib.Name?
     {
@@ -105,157 +67,145 @@ public class PreferencesWindowController: NSWindowController
     public override func windowDidLoad()
     {
         super.windowDidLoad()
-        self.reload()
         
-        self.keychainItem    = KeychainPassword( service: "Fetcher Git Credentials" )
-        self.username        = self.keychainItem?.username ?? ""
-        self.password        = self.keychainItem?.password ?? ""
-        self.sorting         = Preferences.shared.sorting
-        self.checkForUpdates = Preferences.shared.autoCheckForUpdates
-        self.startAtLogin    = NSApp.isLoginItemEnabled()
-        self.smartOpen       = Preferences.shared.smartOpen
-        self.openAction      = Preferences.shared.openAction
-        self.fetchInterval   = Preferences.shared.fetchInterval
+        self.controllers.sortDescriptors = [
+            NSSortDescriptor( key: "sorting", ascending: true ),
+            NSSortDescriptor( key: "title", ascending: true, selector: #selector( NSString.localizedCaseInsensitiveCompare( _: ) ) )
+        ]
         
-        let o1 = Preferences.shared.observe( \.sorting )
+        self.selectionObserver = self.controllers.observe( \.selectionIndex )
         {
-            [ weak self ] o, c in guard let self = self else { return }
-            
-            self.sorting = Preferences.shared.sorting
+            [ weak self ] o, c in self?.selectionChanged()
         }
-        
-        let o2 = Preferences.shared.observe( \.autoCheckForUpdates )
-        {
-            [ weak self ] o, c in guard let self = self else { return }
-            
-            self.checkForUpdates = Preferences.shared.autoCheckForUpdates
-        }
-        
-        let o3 = Preferences.shared.observe( \.smartOpen )
-        {
-            [ weak self ] o, c in guard let self = self else { return }
-            
-            self.smartOpen = Preferences.shared.smartOpen
-        }
-        
-        let o4 = Preferences.shared.observe( \.openAction )
-        {
-            [ weak self ] o, c in guard let self = self else { return }
-            
-            self.openAction = Preferences.shared.openAction
-        }
-        
-        let o5 = Preferences.shared.observe( \.fetchInterval )
-        {
-            [ weak self ] o, c in guard let self = self else { return }
-            
-            self.fetchInterval = Preferences.shared.fetchInterval
-        }
-        
-        self.observations.append( contentsOf: [ o1, o2, o3, o4, o5 ] )
     }
     
-    private func reload()
+    public func addController( _ controller: PreferencesViewController )
     {
-        if let existing = self.arrayController.content as? [ FolderItem ]
-        {
-            self.arrayController.remove( contentsOf: existing )
-        }
+        self.controllers.addObject( controller )
+        self.controllers.rearrangeObjects()
         
-        self.arrayController.add( contentsOf: Preferences.shared.paths.map { FolderItem( path: $0 ) } )
+        if let controllers = self.controllers.arrangedObjects as? [ PreferencesViewController ],
+               controllers.count == 1
+        {
+            self.controllers.setSelectedObjects( [ controller ] )
+        }
     }
     
-    @IBAction private func addRemoveFolder( _ sender: Any? )
+    private func windowFrame( for controller: PreferencesViewController ) -> NSRect
     {
-        guard let control = sender as? NSSegmentedControl else
+        guard let container = self.container,
+              let window    = self.window
+        else
         {
-            NSSound.beep()
-            
+            return NSRect.zero
+        }
+        
+        let diffX = container.frame.size.width  - controller.view.frame.size.width
+        let diffY = container.frame.size.height - controller.view.frame.size.height
+        var rect  = window.frame
+        
+        rect.origin.x    += diffX / 2
+        rect.origin.y    += diffY
+        rect.size.width  -= diffX
+        rect.size.height -= diffY
+        
+        return rect
+    }
+    
+    public func showController( at index: Int )
+    {
+        guard let controllers = self.controllers.content as? [ PreferencesViewController ] else
+        {
             return
         }
         
-        if control.selectedSegment == 0
+        if index >= 0 && index < controllers.count
         {
-            self.addFolder()
+            self.controllers.setSelectionIndex( index )
         }
-        else if control.selectedSegment == 1
+    }
+    
+    private func selectionChanged()
+    {
+        guard let controller = self.controllers.selectedObjects.first as? PreferencesViewController else
         {
-            self.removeFolder()
+            return
+        }
+        
+        self.showController( controller )
+    }
+        
+    private func showController( _ controller: PreferencesViewController )
+    {
+        guard let container        = self.container,
+              let sidebarContainer = self.sidebarContainer,
+              let window           = self.window
+        else
+        {
+            return
+        }
+        
+        if controller.view == container.subviews.first
+        {
+            return
+        }
+        
+        let rect = self.windowFrame( for: controller )
+        
+        container.subviews.forEach { $0.removeFromSuperview() }
+        
+        if window.isVisible
+        {
+            let sidebarFixedWidth      = NSLayoutConstraint( item: sidebarContainer, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .width, multiplier: 1, constant: sidebarContainer.frame.size.width )
+            self.sidebarWidth.isActive = false
+            self.animating             = true
+            
+            self.sidebarContainer.superview?.addConstraint( sidebarFixedWidth )
+            
+            controller.view.alphaValue = 0
+            
+            self.window?.layoutIfNeeded()
+            container.layoutSubtreeIfNeeded()
+            controller.view.layoutSubtreeIfNeeded()
+            
+            NSAnimationContext.runAnimationGroup(
+                {
+                    context in
+                    
+                    self.window?.layoutIfNeeded()
+                    container.layoutSubtreeIfNeeded()
+                    controller.view.layoutSubtreeIfNeeded()
+                    
+                    window.animator().setFrame( rect, display: true, animate: true )
+                },
+                completionHandler:
+                {
+                    container.addSubview( controller.view )
+                    container.addConstraint( NSLayoutConstraint( item: container, attribute: .width,   relatedBy: .equal, toItem: controller.view, attribute: .width,   multiplier: 1, constant: 0 ) )
+                    container.addConstraint( NSLayoutConstraint( item: container, attribute: .height,  relatedBy: .equal, toItem: controller.view, attribute: .height,  multiplier: 1, constant: 0 ) )
+                    container.addConstraint( NSLayoutConstraint( item: container, attribute: .centerX, relatedBy: .equal, toItem: controller.view, attribute: .centerX, multiplier: 1, constant: 0 ) )
+                    container.addConstraint( NSLayoutConstraint( item: container, attribute: .centerY, relatedBy: .equal, toItem: controller.view, attribute: .centerY, multiplier: 1, constant: 0 ) )
+                    self.sidebarContainer.superview?.removeConstraint( sidebarFixedWidth )
+                    
+                    self.sidebarWidth.isActive            = true
+                    controller.view.animator().alphaValue = 1
+                    self.animating                        = false
+                }
+            )
         }
         else
         {
-            NSSound.beep()
+            self.window?.setFrame( rect, display: false, animate: false )
+            container.addSubview( controller.view )
+            container.addConstraint( NSLayoutConstraint( item: container, attribute: .width,   relatedBy: .equal, toItem: controller.view, attribute: .width,   multiplier: 1, constant: 0 ) )
+            container.addConstraint( NSLayoutConstraint( item: container, attribute: .height,  relatedBy: .equal, toItem: controller.view, attribute: .height,  multiplier: 1, constant: 0 ) )
+            container.addConstraint( NSLayoutConstraint( item: container, attribute: .centerX, relatedBy: .equal, toItem: controller.view, attribute: .centerX, multiplier: 1, constant: 0 ) )
+            container.addConstraint( NSLayoutConstraint( item: container, attribute: .centerY, relatedBy: .equal, toItem: controller.view, attribute: .centerY, multiplier: 1, constant: 0 ) )
         }
     }
     
-    private func addFolder()
+    public func tableView( _ tableView: NSTableView, shouldSelectRow row: Int ) -> Bool
     {
-        guard let window = self.window else
-        {
-            NSSound.beep()
-            
-            return
-        }
-        
-        let panel                     = NSOpenPanel()
-        panel.canChooseFiles          = false
-        panel.canChooseDirectories    = true
-        panel.allowsMultipleSelection = false
-        panel.canCreateDirectories    = true
-        
-        panel.beginSheetModal( for: window )
-        {
-            guard let url = panel.url, $0 == .OK else
-            {
-                return
-            }
-            
-            Preferences.shared.addPath( url.path )
-            self.reload()
-        }
-    }
-    
-    private func removeFolder()
-    {
-        guard let selected = self.arrayController.selectedObjects.first as? FolderItem else
-        {
-            NSSound.beep()
-            
-            return
-        }
-        
-        Preferences.shared.removePath( selected.path )
-        self.reload()
-    }
-    
-    @IBAction private func saveInKeychain( _ sender: Any? )
-    {
-        guard let item = self.keychainItem, let username = self.username, let password = self.password, username.count > 0, password.count > 0 else
-        {
-            NSSound.beep()
-            
-            return
-        }
-        
-        item.username = username
-        item.password = password
-        
-        do
-        {
-            try self.keychainItem?.save()
-        }
-        catch let error
-        {
-            let alert = NSAlert( error: error )
-            
-            if let window = self.window
-            {
-                alert.beginSheetModal( for: window, completionHandler: nil )
-            }
-            else
-            {
-                alert.runModal()
-            }
-        }
+        return self.animating == false
     }
 }

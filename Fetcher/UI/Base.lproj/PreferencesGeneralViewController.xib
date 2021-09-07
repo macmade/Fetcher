@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="18122" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="18122"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="PreferencesGeneralViewController" customModule="Fetcher" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="PZf-Wx-lKj" id="PhV-3J-5ta"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="PZf-Wx-lKj">
+            <rect key="frame" x="0.0" y="0.0" width="500" height="311"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eRD-UR-m7y">
+                    <rect key="frame" x="18" y="255" width="136" height="16"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="Fetch Remotes every:" id="rp4-cE-VrG">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <popUpButton wantsLayer="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="LsD-jx-Esi">
+                    <rect key="frame" x="17" y="223" width="107" height="25"/>
+                    <popUpButtonCell key="cell" type="push" title="5 minutes" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="5" imageScaling="proportionallyDown" inset="2" selectedItem="7Vh-Ji-bWt" id="xt8-lR-uhY">
+                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="menu"/>
+                        <menu key="menu" id="1Ez-a2-8GT">
+                            <items>
+                                <menuItem title="5 minutes" state="on" tag="5" id="7Vh-Ji-bWt"/>
+                                <menuItem title="10 minutes" tag="10" id="fV4-BA-lmq"/>
+                                <menuItem title="30 minutes" tag="30" id="wsf-qW-g8G"/>
+                                <menuItem title="hour" tag="60" id="7Eu-pC-w2T"/>
+                            </items>
+                        </menu>
+                    </popUpButtonCell>
+                    <connections>
+                        <binding destination="-2" name="selectedTag" keyPath="self.fetchInterval" id="hyb-pB-bQ3"/>
+                    </connections>
+                </popUpButton>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="N0e-gf-8gT">
+                    <rect key="frame" x="18" y="191" width="127" height="16"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="Double Click Action:" id="uZE-bK-6PX">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <popUpButton wantsLayer="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8a3-8G-uX3">
+                    <rect key="frame" x="17" y="159" width="141" height="25"/>
+                    <popUpButtonCell key="cell" type="push" title="Reveal in Finder" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="1u1-LB-B0e" id="se7-p0-8JM">
+                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="menu"/>
+                        <menu key="menu" id="At6-tJ-f38">
+                            <items>
+                                <menuItem title="Reveal in Finder" state="on" id="1u1-LB-B0e"/>
+                                <menuItem title="Open in Terminal" id="HzX-yW-dPM"/>
+                                <menuItem title="Open in VSCode" id="C4z-wD-TZV"/>
+                                <menuItem title="Open in BBEdit" id="Zew-NL-2Py"/>
+                            </items>
+                        </menu>
+                    </popUpButtonCell>
+                    <connections>
+                        <binding destination="-2" name="selectedIndex" keyPath="self.openAction" id="z3G-AF-G9W"/>
+                    </connections>
+                </popUpButton>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="C8p-HS-dyl">
+                    <rect key="frame" x="160" y="164" width="99" height="18"/>
+                    <buttonCell key="cell" type="check" title="Smart Open" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="DG9-zA-wdx">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <binding destination="-2" name="value" keyPath="self.smartOpen" id="8vK-IG-h31"/>
+                    </connections>
+                </button>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gNa-pj-qOo">
+                    <rect key="frame" x="18" y="127" width="113" height="16"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="Sort Repositories:" id="cMq-Ue-tZW">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <popUpButton wantsLayer="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="66A-NB-ire">
+                    <rect key="frame" x="17" y="95" width="116" height="25"/>
+                    <popUpButtonCell key="cell" type="push" title="Last Commit" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="A5H-ts-WUK" id="Jp4-kB-hPp">
+                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="menu"/>
+                        <menu key="menu" id="zzp-3W-pWg">
+                            <items>
+                                <menuItem title="Last Commit" state="on" id="A5H-ts-WUK"/>
+                                <menuItem title="Name" id="Swg-Ld-ly3"/>
+                            </items>
+                        </menu>
+                    </popUpButtonCell>
+                    <connections>
+                        <binding destination="-2" name="selectedIndex" keyPath="self.sortBy" id="PJd-71-l5D"/>
+                    </connections>
+                </popUpButton>
+                <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="3VM-xh-S77">
+                    <rect key="frame" x="20" y="76" width="460" height="5"/>
+                </box>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="09A-ch-xND">
+                    <rect key="frame" x="18" y="41" width="108" height="18"/>
+                    <buttonCell key="cell" type="check" title="Start at Login" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="5dW-Eb-GMX">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <binding destination="-2" name="value" keyPath="self.startAtLogin" id="TJK-fg-3Hl"/>
+                    </connections>
+                </button>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Jfa-Jg-f6v">
+                    <rect key="frame" x="18" y="19" width="229" height="18"/>
+                    <buttonCell key="cell" type="check" title="Automatically Check for Updates " bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Cms-rC-o7q">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <binding destination="-2" name="value" keyPath="self.checkForUpdates" id="VQT-ho-mif"/>
+                    </connections>
+                </button>
+            </subviews>
+            <constraints>
+                <constraint firstItem="66A-NB-ire" firstAttribute="leading" secondItem="PZf-Wx-lKj" secondAttribute="leading" constant="20" symbolic="YES" id="2Zh-dM-tsc"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="C8p-HS-dyl" secondAttribute="trailing" constant="20" symbolic="YES" id="4kc-Qv-FaY"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="66A-NB-ire" secondAttribute="trailing" constant="20" symbolic="YES" id="5M5-Kf-Zvb"/>
+                <constraint firstItem="eRD-UR-m7y" firstAttribute="leading" secondItem="PZf-Wx-lKj" secondAttribute="leading" constant="20" symbolic="YES" id="AFZ-sE-wLD"/>
+                <constraint firstItem="gNa-pj-qOo" firstAttribute="top" secondItem="8a3-8G-uX3" secondAttribute="bottom" constant="20" id="E9Q-2c-Y5P"/>
+                <constraint firstItem="LsD-jx-Esi" firstAttribute="leading" secondItem="PZf-Wx-lKj" secondAttribute="leading" constant="20" symbolic="YES" id="KYY-lP-yA7"/>
+                <constraint firstItem="3VM-xh-S77" firstAttribute="leading" secondItem="PZf-Wx-lKj" secondAttribute="leading" constant="20" symbolic="YES" id="Kmu-3N-yfk"/>
+                <constraint firstItem="C8p-HS-dyl" firstAttribute="leading" secondItem="8a3-8G-uX3" secondAttribute="trailing" constant="8" symbolic="YES" id="Lfu-We-gSw"/>
+                <constraint firstItem="8a3-8G-uX3" firstAttribute="top" secondItem="N0e-gf-8gT" secondAttribute="bottom" constant="8" symbolic="YES" id="Lj4-ow-5Z6"/>
+                <constraint firstItem="eRD-UR-m7y" firstAttribute="top" secondItem="PZf-Wx-lKj" secondAttribute="top" constant="40" id="Lr0-SH-fFd"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Jfa-Jg-f6v" secondAttribute="trailing" constant="20" symbolic="YES" id="NuX-TV-iC4"/>
+                <constraint firstItem="N0e-gf-8gT" firstAttribute="top" secondItem="LsD-jx-Esi" secondAttribute="bottom" constant="20" id="RLM-kV-2ZC"/>
+                <constraint firstItem="C8p-HS-dyl" firstAttribute="centerY" secondItem="8a3-8G-uX3" secondAttribute="centerY" id="TW5-cl-sES"/>
+                <constraint firstItem="66A-NB-ire" firstAttribute="top" secondItem="gNa-pj-qOo" secondAttribute="bottom" constant="8" symbolic="YES" id="U4B-sT-iR9"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="LsD-jx-Esi" secondAttribute="trailing" constant="20" symbolic="YES" id="Y7C-Ki-gj9"/>
+                <constraint firstItem="09A-ch-xND" firstAttribute="top" secondItem="3VM-xh-S77" secondAttribute="bottom" constant="20" id="bfa-4a-KsT"/>
+                <constraint firstItem="Jfa-Jg-f6v" firstAttribute="top" secondItem="09A-ch-xND" secondAttribute="bottom" constant="6" symbolic="YES" id="dUk-Jx-kw9"/>
+                <constraint firstItem="N0e-gf-8gT" firstAttribute="leading" secondItem="PZf-Wx-lKj" secondAttribute="leading" constant="20" symbolic="YES" id="dmf-lC-7Zq"/>
+                <constraint firstItem="Jfa-Jg-f6v" firstAttribute="leading" secondItem="PZf-Wx-lKj" secondAttribute="leading" constant="20" symbolic="YES" id="elH-gd-3ID"/>
+                <constraint firstItem="LsD-jx-Esi" firstAttribute="top" secondItem="eRD-UR-m7y" secondAttribute="bottom" constant="8" symbolic="YES" id="f3i-BU-1kw"/>
+                <constraint firstItem="3VM-xh-S77" firstAttribute="top" secondItem="66A-NB-ire" secondAttribute="bottom" constant="20" id="fDI-WO-7PC"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="09A-ch-xND" secondAttribute="trailing" constant="20" symbolic="YES" id="hwG-rG-07X"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="eRD-UR-m7y" secondAttribute="trailing" constant="20" symbolic="YES" id="hwH-TZ-ziJ"/>
+                <constraint firstAttribute="bottom" secondItem="Jfa-Jg-f6v" secondAttribute="bottom" constant="20" symbolic="YES" id="lci-gU-ISE"/>
+                <constraint firstAttribute="trailing" secondItem="3VM-xh-S77" secondAttribute="trailing" constant="20" symbolic="YES" id="mbH-kD-wyI"/>
+                <constraint firstItem="gNa-pj-qOo" firstAttribute="leading" secondItem="PZf-Wx-lKj" secondAttribute="leading" constant="20" symbolic="YES" id="q3e-bE-7FK"/>
+                <constraint firstItem="8a3-8G-uX3" firstAttribute="leading" secondItem="PZf-Wx-lKj" secondAttribute="leading" constant="20" symbolic="YES" id="smh-Nx-QIj"/>
+                <constraint firstItem="09A-ch-xND" firstAttribute="leading" secondItem="PZf-Wx-lKj" secondAttribute="leading" constant="20" symbolic="YES" id="vs8-sg-5p0"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="N0e-gf-8gT" secondAttribute="trailing" constant="20" symbolic="YES" id="yKK-zs-xgu"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="gNa-pj-qOo" secondAttribute="trailing" constant="20" symbolic="YES" id="zq5-zv-uC0"/>
+            </constraints>
+            <point key="canvasLocation" x="-67" y="-723"/>
+        </customView>
+    </objects>
+</document>
