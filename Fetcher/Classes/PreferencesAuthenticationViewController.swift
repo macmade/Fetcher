@@ -29,7 +29,30 @@ public class PreferencesAuthenticationViewController: PreferencesViewController
     @objc private dynamic var username: String?
     @objc private dynamic var password: String?
     
-    private var keychainItem:  KeychainPassword?
+    @objc private dynamic var publicKeyPath: String?
+    {
+        didSet
+        {
+            if self.publicKeyPath != Preferences.shared.publicKeyPath
+            {
+                Preferences.shared.publicKeyPath = self.publicKeyPath
+            }
+        }
+    }
+    
+    @objc private dynamic var privateKeyPath: String?
+    {
+        didSet
+        {
+            if self.privateKeyPath != Preferences.shared.privateKeyPath
+            {
+                Preferences.shared.privateKeyPath = self.privateKeyPath
+            }
+        }
+    }
+    
+    private var observations: [ NSKeyValueObservation ] = []
+    private var keychainItem: KeychainPassword?
     
     public init()
     {
@@ -50,9 +73,27 @@ public class PreferencesAuthenticationViewController: PreferencesViewController
     {
         super.viewDidLoad()
         
-        self.keychainItem = KeychainPassword( service: "Fetcher Git Credentials" )
-        self.username     = self.keychainItem?.username ?? ""
-        self.password     = self.keychainItem?.password ?? ""
+        self.keychainItem   = KeychainPassword( service: "Fetcher Git Credentials" )
+        self.username       = self.keychainItem?.username ?? ""
+        self.password       = self.keychainItem?.password ?? ""
+        self.publicKeyPath  = Preferences.shared.publicKeyPath
+        self.privateKeyPath = Preferences.shared.privateKeyPath
+        
+        let o1 = Preferences.shared.observe( \.publicKeyPath )
+        {
+            [ weak self ] o, c in guard let self = self else { return }
+            
+            self.publicKeyPath = Preferences.shared.publicKeyPath
+        }
+        
+        let o2 = Preferences.shared.observe( \.privateKeyPath )
+        {
+            [ weak self ] o, c in guard let self = self else { return }
+            
+            self.privateKeyPath = Preferences.shared.privateKeyPath
+        }
+        
+        self.observations.append( contentsOf: [ o1, o2 ] )
     }
     
     @IBAction private func saveInKeychain( _ sender: Any? )
@@ -83,6 +124,43 @@ public class PreferencesAuthenticationViewController: PreferencesViewController
             {
                 alert.runModal()
             }
+        }
+    }
+    
+    @IBAction private func choosePublicKey( _ sender: Any? )
+    {
+        self.chooseKey { self.publicKeyPath = $0.path }
+    }
+    
+    @IBAction private func choosePrivateKey( _ sender: Any? )
+    {
+        self.chooseKey { self.privateKeyPath = $0.path }
+    }
+    
+    private func chooseKey( completion: @escaping ( URL ) -> Void )
+    {
+        guard let window = self.view.window else
+        {
+            NSSound.beep()
+            
+            return
+        }
+        
+        let panel                     = NSOpenPanel()
+        panel.canChooseFiles          = true
+        panel.canChooseDirectories    = false
+        panel.allowsMultipleSelection = false
+        panel.canCreateDirectories    = false
+        panel.showsHiddenFiles        = true
+        
+        panel.beginSheetModal( for: window )
+        {
+            guard let url = panel.url, $0 == .OK else
+            {
+                return
+            }
+            
+            completion( url )
         }
     }
 }

@@ -33,6 +33,8 @@ import Cocoa
     @objc public dynamic                var sorting:             Int        = 0
     @objc public dynamic                var openAction:          Int        = 0
     @objc public dynamic                var fetchInterval:       Int        = 60
+    @objc public dynamic                var publicKeyPath:       String?
+    @objc public dynamic                var privateKeyPath:      String?
     
     @objc public static let shared = Preferences()
     
