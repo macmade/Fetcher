@@ -26,7 +26,8 @@ import Cocoa
 
 public class MainViewController: NSViewController, NSMenuDelegate
 {
-    private let queue = DispatchQueue( label: "com.xs-labs.Fetcher.UpdateQueue" )
+    private let queue   = DispatchQueue( label: "com.xs-labs.Fetcher.UpdateQueue" )
+    private let limiter = RateLimiter( maxConcurrentOperationCount: 10 )
     
     @objc private dynamic var updating = false
     
@@ -90,7 +91,7 @@ public class MainViewController: NSViewController, NSMenuDelegate
         
         repositories.forEach
         {
-            repository in DispatchQueue.global( qos: .default ).async
+            repository in self.limiter.execute
             {
                 repository.repository.remotes.forEach
                 {

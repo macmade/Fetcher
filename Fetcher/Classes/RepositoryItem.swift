@@ -251,6 +251,8 @@ public class RepositoryItem: NSObject, RepositoryDelegate
                 
                 return
             }
+            
+            self.reveal()
         }
         else if Preferences.shared.openAction == 1
         {

@@ -17,6 +17,7 @@
 		050036C126E7FC8000143CE6 /* PreferencesGeneralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050036C026E7FC8000143CE6 /* PreferencesGeneralViewController.swift */; };
 		050036C826E7FCDE00143CE6 /* PreferencesGeneralViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 050036C226E7FCDE00143CE6 /* PreferencesGeneralViewController.xib */; };
 		050036CA26E7FCDE00143CE6 /* PreferencesAuthenticationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 050036C626E7FCDE00143CE6 /* PreferencesAuthenticationViewController.xib */; };
+		050036F626E82FDD00143CE6 /* RateLimiter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050036F226E82FDD00143CE6 /* RateLimiter.swift */; };
 		055FD90D26E22A5E0034048C /* GitKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 055FD90B26E22A250034048C /* GitKit.framework */; };
 		055FD90E26E22A5E0034048C /* GitKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 055FD90B26E22A250034048C /* GitKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		055FD91A26E22B3A0034048C /* AboutWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055FD91526E22B3A0034048C /* AboutWindowController.swift */; };
@@ -93,6 +94,7 @@
 		050036C026E7FC8000143CE6 /* PreferencesGeneralViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesGeneralViewController.swift; sourceTree = "<group>"; };
 		050036C326E7FCDE00143CE6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/PreferencesGeneralViewController.xib; sourceTree = "<group>"; };
 		050036C726E7FCDE00143CE6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/PreferencesAuthenticationViewController.xib; sourceTree = "<group>"; };
+		050036F226E82FDD00143CE6 /* RateLimiter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RateLimiter.swift; sourceTree = "<group>"; };
 		055FD8BD26E2299A0034048C /* Fetcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fetcher.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		055FD8C726E2299C0034048C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		055FD8C826E2299C0034048C /* Fetcher.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Fetcher.entitlements; sourceTree = "<group>"; };
@@ -372,6 +374,7 @@
 				0580509626E3EEDA00845F70 /* BehindTransformer.swift */,
 				050036AE26E7AFE200143CE6 /* KeychainPassword.swift */,
 				050036B326E7D63800143CE6 /* NSError.swift */,
+				050036F226E82FDD00143CE6 /* RateLimiter.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -534,6 +537,7 @@
 				050036B726E7DB8F00143CE6 /* PreferencesViewController.swift in Sources */,
 				055FD92426E22BB60034048C /* NSApplication+LaunchServices.m in Sources */,
 				055FD91A26E22B3A0034048C /* AboutWindowController.swift in Sources */,
+				050036F626E82FDD00143CE6 /* RateLimiter.swift in Sources */,
 				0580509026E3EDA900845F70 /* IsZero.swift in Sources */,
 				050036BF26E7DC0300143CE6 /* PreferencesAuthenticationViewController.swift in Sources */,
 				0580509726E3EEDA00845F70 /* BehindTransformer.swift in Sources */,
