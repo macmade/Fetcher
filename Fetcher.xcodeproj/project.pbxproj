@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		050036AF26E7AFE200143CE6 /* KeychainPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050036AE26E7AFE200143CE6 /* KeychainPassword.swift */; };
+		050036B426E7D63800143CE6 /* NSError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050036B326E7D63800143CE6 /* NSError.swift */; };
 		055FD90D26E22A5E0034048C /* GitKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 055FD90B26E22A250034048C /* GitKit.framework */; };
 		055FD90E26E22A5E0034048C /* GitKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 055FD90B26E22A250034048C /* GitKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		055FD91A26E22B3A0034048C /* AboutWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055FD91526E22B3A0034048C /* AboutWindowController.swift */; };
@@ -74,6 +76,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		050036AE26E7AFE200143CE6 /* KeychainPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainPassword.swift; sourceTree = "<group>"; };
+		050036B326E7D63800143CE6 /* NSError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSError.swift; sourceTree = "<group>"; };
 		055FD8BD26E2299A0034048C /* Fetcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fetcher.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		055FD8C726E2299C0034048C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		055FD8C826E2299C0034048C /* Fetcher.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Fetcher.entitlements; sourceTree = "<group>"; };
@@ -348,6 +352,8 @@
 				0580508F26E3EDA900845F70 /* IsZero.swift */,
 				0580509426E3EECD00845F70 /* AheadTransformer.swift */,
 				0580509626E3EEDA00845F70 /* BehindTransformer.swift */,
+				050036AE26E7AFE200143CE6 /* KeychainPassword.swift */,
+				050036B326E7D63800143CE6 /* NSError.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -497,6 +503,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				050036AF26E7AFE200143CE6 /* KeychainPassword.swift in Sources */,
 				0580507726E2CFE300845F70 /* Application.swift in Sources */,
 				055FD93826E22EC90034048C /* PreferencesWindowController.swift in Sources */,
 				0580509526E3EECD00845F70 /* AheadTransformer.swift in Sources */,
@@ -505,6 +512,7 @@
 				055FD91A26E22B3A0034048C /* AboutWindowController.swift in Sources */,
 				0580509026E3EDA900845F70 /* IsZero.swift in Sources */,
 				0580509726E3EEDA00845F70 /* BehindTransformer.swift in Sources */,
+				050036B426E7D63800143CE6 /* NSError.swift in Sources */,
 				055FD93126E22D190034048C /* Preferences.swift in Sources */,
 				055FD91B26E22B3A0034048C /* ApplicationDelegate.swift in Sources */,
 				055FD94426E260020034048C /* RepositoryItem.swift in Sources */,

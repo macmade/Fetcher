@@ -91,6 +91,10 @@ public class PreferencesWindowController: NSWindowController
         }
     }
     
+    @objc private dynamic var username: String?
+    @objc private dynamic var password: String?
+    
+    private var keychainItem:  KeychainPassword?
     private var observations = [ NSKeyValueObservation ]()
     
     public override var windowNibName: NSNib.Name?
@@ -103,6 +107,9 @@ public class PreferencesWindowController: NSWindowController
         super.windowDidLoad()
         self.reload()
         
+        self.keychainItem    = KeychainPassword( service: "Fetcher Git Credentials" )
+        self.username        = self.keychainItem?.username ?? ""
+        self.password        = self.keychainItem?.password ?? ""
         self.sorting         = Preferences.shared.sorting
         self.checkForUpdates = Preferences.shared.autoCheckForUpdates
         self.startAtLogin    = NSApp.isLoginItemEnabled()
@@ -219,5 +226,36 @@ public class PreferencesWindowController: NSWindowController
         
         Preferences.shared.removePath( selected.path )
         self.reload()
+    }
+    
+    @IBAction private func saveInKeychain( _ sender: Any? )
+    {
+        guard let item = self.keychainItem, let username = self.username, let password = self.password, username.count > 0, password.count > 0 else
+        {
+            NSSound.beep()
+            
+            return
+        }
+        
+        item.username = username
+        item.password = password
+        
+        do
+        {
+            try self.keychainItem?.save()
+        }
+        catch let error
+        {
+            let alert = NSAlert( error: error )
+            
+            if let window = self.window
+            {
+                alert.beginSheetModal( for: window, completionHandler: nil )
+            }
+            else
+            {
+                alert.runModal()
+            }
+        }
     }
 }
