@@ -25,7 +25,7 @@
 import Cocoa
 import GitKit
 
-public class RepositoryItem: NSObject
+public class RepositoryItem: NSObject, RepositoryDelegate
 {
     private static let queue = DispatchQueue( label: "com.xs-labs.Fetcher.StatusQueue", qos: .default, attributes: .concurrent, autoreleaseFrequency: .workItem, target: nil )
     
@@ -67,6 +67,9 @@ public class RepositoryItem: NSObject
             self.icon       = RepositoryItem.icon( for: url )
             
             super.init()
+            
+            self.repository.delegate = self
+            
             self.update()
         }
         catch let error as GitKit.Error
@@ -121,7 +124,7 @@ public class RepositoryItem: NSObject
                     
                 case .second( let commit ):
                     
-                    self.head           = String( commit.hash.prefix( 7 ) )
+                    self.head           = String( commit.commitHash.prefix( 7 ) )
                     self.headTextColor  = NSColor.systemOrange
                     self.tooltip        = RepositoryItem.tooltip( for: commit )
                     self.lastCommitDate = commit.date
@@ -327,8 +330,20 @@ public class RepositoryItem: NSObject
             commit.author.name,
             commit.author.email,
             formatter.string( from: commit.date ),
-            String( commit.hash.prefix( 7 ) ),
+            String( commit.commitHash.prefix( 7 ) ),
             commit.message?.trimmingCharacters( in: .whitespacesAndNewlines ) ?? "<empty>"
         )
+    }
+    
+    public func authentication( for url: URL ) -> Credentials?
+    {
+        let item = KeychainPassword( service: "Fetcher Git Credentials" )
+        
+        if let username = item.username, let password = item.password
+        {
+            return Credentials( username: username, password: password )
+        }
+        
+        return nil
     }
 }
