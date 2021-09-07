@@ -337,27 +337,34 @@ public class RepositoryItem: NSObject, RepositoryDelegate
     
     public func httpAuthentication( for url: URL ) -> HTTPCredentials?
     {
-        let item = KeychainPassword( service: "Fetcher Git Credentials" )
+        let item = KeychainPassword( service: "Fetcher HTTP Credentials" )
         
-        if let username = item.username, let password = item.password
+        guard let username = item.username,
+              let password = item.password
+        else
         {
-            return HTTPCredentials( username: username, password: password )
+            return nil
         }
         
-        return nil
+        return HTTPCredentials( username: username, password: password )
     }
     
     public func sshAuthentication( for url: URL ) -> SSHCredentials?
     {
-        if let publicKey = Preferences.shared.publicKeyPath, let privateKey = Preferences.shared.privateKeyPath
+        let item = KeychainPassword( service: "Fetcher SSH Credentials" )
+        
+        guard let publicKey  = Preferences.shared.publicKeyPath,
+              let privateKey = Preferences.shared.privateKeyPath,
+              let password   = item.password
+        else
         {
-            return SSHCredentials(
-                publicKey:  URL( fileURLWithPath: publicKey ),
-                privateKey: URL( fileURLWithPath: privateKey ),
-                password:   ""
-            )
+            return nil
         }
         
-        return nil
+        return SSHCredentials(
+            publicKey:  URL( fileURLWithPath: publicKey ),
+            privateKey: URL( fileURLWithPath: privateKey ),
+            password:   password
+        )
     }
 }

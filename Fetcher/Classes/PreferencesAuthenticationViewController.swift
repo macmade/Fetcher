@@ -26,8 +26,9 @@ import Foundation
 
 public class PreferencesAuthenticationViewController: PreferencesViewController
 {
-    @objc private dynamic var username: String?
-    @objc private dynamic var password: String?
+    @objc private dynamic var username:   String?
+    @objc private dynamic var password:   String?
+    @objc private dynamic var passphrase: String?
     
     @objc private dynamic var publicKeyPath: String?
     {
@@ -52,7 +53,8 @@ public class PreferencesAuthenticationViewController: PreferencesViewController
     }
     
     private var observations: [ NSKeyValueObservation ] = []
-    private var keychainItem: KeychainPassword?
+    private var httpKeychainItem: KeychainPassword?
+    private var sshKeychainItem:  KeychainPassword?
     
     public init()
     {
@@ -73,11 +75,13 @@ public class PreferencesAuthenticationViewController: PreferencesViewController
     {
         super.viewDidLoad()
         
-        self.keychainItem   = KeychainPassword( service: "Fetcher Git Credentials" )
-        self.username       = self.keychainItem?.username ?? ""
-        self.password       = self.keychainItem?.password ?? ""
-        self.publicKeyPath  = Preferences.shared.publicKeyPath
-        self.privateKeyPath = Preferences.shared.privateKeyPath
+        self.httpKeychainItem = KeychainPassword( service: "Fetcher HTTP Credentials" )
+        self.sshKeychainItem  = KeychainPassword( service: "Fetcher SSH Credentials" )
+        self.username         = self.httpKeychainItem?.username ?? ""
+        self.password         = self.httpKeychainItem?.password ?? ""
+        self.passphrase       = self.sshKeychainItem?.password
+        self.publicKeyPath    = Preferences.shared.publicKeyPath
+        self.privateKeyPath   = Preferences.shared.privateKeyPath
         
         let o1 = Preferences.shared.observe( \.publicKeyPath )
         {
@@ -96,9 +100,9 @@ public class PreferencesAuthenticationViewController: PreferencesViewController
         self.observations.append( contentsOf: [ o1, o2 ] )
     }
     
-    @IBAction private func saveInKeychain( _ sender: Any? )
+    @IBAction private func savePasswordInKeychain( _ sender: Any? )
     {
-        guard let item = self.keychainItem, let username = self.username, let password = self.password, username.count > 0, password.count > 0 else
+        guard let item = self.httpKeychainItem, let username = self.username, let password = self.password, username.count > 0, password.count > 0 else
         {
             NSSound.beep()
             
@@ -110,7 +114,38 @@ public class PreferencesAuthenticationViewController: PreferencesViewController
         
         do
         {
-            try self.keychainItem?.save()
+            try self.httpKeychainItem?.save()
+        }
+        catch let error
+        {
+            let alert = NSAlert( error: error )
+            
+            if let window = self.view.window
+            {
+                alert.beginSheetModal( for: window, completionHandler: nil )
+            }
+            else
+            {
+                alert.runModal()
+            }
+        }
+    }
+    
+    @IBAction private func savePassphraseInKeychain( _ sender: Any? )
+    {
+        guard let item = self.sshKeychainItem, let password = self.passphrase, password.count > 0 else
+        {
+            NSSound.beep()
+            
+            return
+        }
+        
+        item.username = ""
+        item.password = password
+        
+        do
+        {
+            try self.sshKeychainItem?.save()
         }
         catch let error
         {

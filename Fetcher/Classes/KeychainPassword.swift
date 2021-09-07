@@ -54,15 +54,14 @@ public class KeychainPassword
         
         let dict = item as! [ AnyHashable : Any ]
         
-        guard let username = dict[ kSecAttrAccount ] as? String,
-              let data     = dict[ kSecValueData ]   as? Data,
+        guard let data     = dict[ kSecValueData ]   as? Data,
               let password = String( data: data, encoding: .utf8 )
         else
         {
             return
         }
         
-        self.username = username
+        self.username = dict[ kSecAttrAccount ] as? String ?? ""
         self.password = password
         self.exists   = true
     }
