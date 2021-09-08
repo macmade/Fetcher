@@ -1,14 +1,14 @@
 Fetcher
 =======
 
-[![Build Status](https://img.shields.io/travis/com/macmade/Fetcher.svg?branch=master&style=flat)](https://travis-ci.com/macmade/Fetcher)
-[![Issues](http://img.shields.io/github/issues/macmade/Fetcher.svg?style=flat)](https://github.com/macmade/Fetcher/issues)
-![Status](https://img.shields.io/badge/status-active-brightgreen.svg?style=flat)
-![License](https://img.shields.io/badge/license-mit-brightgreen.svg?style=flat)
-[![Contact](https://img.shields.io/badge/contact-@macmade-blue.svg?style=flat)](https://twitter.com/macmade)  
-[![Donate-Patreon](https://img.shields.io/badge/donate-patreon-yellow.svg?style=flat)](https://patreon.com/macmade)
-[![Donate-Gratipay](https://img.shields.io/badge/donate-gratipay-yellow.svg?style=flat)](https://www.gratipay.com/macmade)
-[![Donate-Paypal](https://img.shields.io/badge/donate-paypal-yellow.svg?style=flat)](https://paypal.me/xslabs)
+[![Build Status](https://img.shields.io/github/workflow/status/macmade/Fetcher/ci-mac?label=macOS&logo=apple)](https://github.com/macmade/Fetcher/actions/workflows/ci-mac.yaml)
+[![Issues](http://img.shields.io/github/issues/macmade/Fetcher.svg)](https://github.com/macmade/Fetcher/issues)
+![Status](https://img.shields.io/badge/status-active-brightgreen.svg)
+![License](https://img.shields.io/badge/license-mit-brightgreen.svg)
+[![Contact](https://img.shields.io/badge/contact-@macmade-blue.svg)](https://twitter.com/macmade)  
+[![Donate-Patreon](https://img.shields.io/badge/donate-patreon-yellow.svg)](https://patreon.com/macmade)
+[![Donate-Gratipay](https://img.shields.io/badge/donate-gratipay-yellow.svg)](https://www.gratipay.com/macmade)
+[![Donate-Paypal](https://img.shields.io/badge/donate-paypal-yellow.svg)](https://paypal.me/xslabs)
 
 ### About
 
