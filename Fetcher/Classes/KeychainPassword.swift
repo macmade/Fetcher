@@ -45,9 +45,9 @@ public class KeychainPassword
             kSecReturnData:       NSNumber( booleanLiteral: true )
         ]
         
-        var item: CFTypeRef?
+        var matching: CFTypeRef?
         
-        guard SecItemCopyMatching( query as CFDictionary, &item ) == noErr, CFGetTypeID( item ) == CFDictionaryGetTypeID(), let item = item else
+        guard SecItemCopyMatching( query as CFDictionary, &matching ) == noErr, CFGetTypeID( matching ) == CFDictionaryGetTypeID(), let item = matching else
         {
             return
         }
