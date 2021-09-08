@@ -369,4 +369,26 @@ public class RepositoryItem: NSObject, RepositoryDelegate
             password:   password
         )
     }
+    
+    public func fetchDidFail( for url: URL, status: Int, message: String? )
+    {
+        let message: String =
+        {
+            if let message = message
+            {
+                 return message.prefix( 1 ).capitalized + message.dropFirst()
+            }
+            
+            return "Unknown error"
+        }()
+        
+        let error = FetchError(
+            url:     url,
+            status:  status,
+            message: message,
+            date:    Date()
+        )
+        
+        Logger.shared.log( error: error )
+    }
 }

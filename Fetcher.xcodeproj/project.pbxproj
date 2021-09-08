@@ -35,6 +35,10 @@
 		055FD94026E257CD0034048C /* StatusIconTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 055FD93F26E257CD0034048C /* StatusIconTemplate.pdf */; };
 		055FD94226E25B580034048C /* Icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 055FD94126E25B580034048C /* Icon.icns */; };
 		055FD94426E260020034048C /* RepositoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055FD94326E260020034048C /* RepositoryItem.swift */; };
+		057E313A26E8375A00ACC503 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057E313926E8375A00ACC503 /* Logger.swift */; };
+		057E313C26E83BAE00ACC503 /* FetchError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057E313B26E83BAE00ACC503 /* FetchError.swift */; };
+		057E313E26E8AFF100ACC503 /* ErrorLogWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057E313D26E8AFF100ACC503 /* ErrorLogWindowController.swift */; };
+		057E314126E8B17400ACC503 /* ErrorLogWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 057E313F26E8B17400ACC503 /* ErrorLogWindowController.xib */; };
 		0580506B26E2C98100845F70 /* Xcode.icns in Resources */ = {isa = PBXBuildFile; fileRef = 0580506926E2C98100845F70 /* Xcode.icns */; };
 		0580506C26E2C98100845F70 /* VSCode.icns in Resources */ = {isa = PBXBuildFile; fileRef = 0580506A26E2C98100845F70 /* VSCode.icns */; };
 		0580506E26E2CB4000845F70 /* Public.icns in Resources */ = {isa = PBXBuildFile; fileRef = 0580506D26E2CB4000845F70 /* Public.icns */; };
@@ -159,6 +163,10 @@
 		055FD93F26E257CD0034048C /* StatusIconTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = StatusIconTemplate.pdf; sourceTree = "<group>"; };
 		055FD94126E25B580034048C /* Icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Icon.icns; sourceTree = "<group>"; };
 		055FD94326E260020034048C /* RepositoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryItem.swift; sourceTree = "<group>"; };
+		057E313926E8375A00ACC503 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		057E313B26E83BAE00ACC503 /* FetchError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchError.swift; sourceTree = "<group>"; };
+		057E313D26E8AFF100ACC503 /* ErrorLogWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorLogWindowController.swift; sourceTree = "<group>"; };
+		057E314026E8B17400ACC503 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ErrorLogWindowController.xib; sourceTree = "<group>"; };
 		0580506926E2C98100845F70 /* Xcode.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Xcode.icns; sourceTree = "<group>"; };
 		0580506A26E2C98100845F70 /* VSCode.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = VSCode.icns; sourceTree = "<group>"; };
 		0580506D26E2CB4000845F70 /* Public.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Public.icns; sourceTree = "<group>"; };
@@ -356,25 +364,28 @@
 			isa = PBXGroup;
 			children = (
 				055FD91526E22B3A0034048C /* AboutWindowController.swift */,
+				0580509426E3EECD00845F70 /* AheadTransformer.swift */,
+				0580507626E2CFE300845F70 /* Application.swift */,
 				055FD91626E22B3A0034048C /* ApplicationDelegate.swift */,
+				0580509626E3EEDA00845F70 /* BehindTransformer.swift */,
+				057E313D26E8AFF100ACC503 /* ErrorLogWindowController.swift */,
+				057E313B26E83BAE00ACC503 /* FetchError.swift */,
+				055FD93C26E249360034048C /* FolderItem.swift */,
+				0580508F26E3EDA900845F70 /* IsZero.swift */,
+				050036AE26E7AFE200143CE6 /* KeychainPassword.swift */,
+				057E313926E8375A00ACC503 /* Logger.swift */,
+				055FD93226E22D5A0034048C /* MainViewController.swift */,
 				055FD92326E22BB60034048C /* NSApplication+LaunchServices.h */,
 				055FD92226E22BB60034048C /* NSApplication+LaunchServices.m */,
+				050036B326E7D63800143CE6 /* NSError.swift */,
 				055FD93026E22D190034048C /* Preferences.swift */,
-				050036B526E7DB8F00143CE6 /* PreferencesViewController.swift */,
-				050036B626E7DB8F00143CE6 /* PreferencesWindowController.swift */,
-				050036BC26E7DBE400143CE6 /* PreferencesPathsViewController.swift */,
 				050036BE26E7DC0300143CE6 /* PreferencesAuthenticationViewController.swift */,
 				050036C026E7FC8000143CE6 /* PreferencesGeneralViewController.swift */,
-				055FD93C26E249360034048C /* FolderItem.swift */,
-				055FD93226E22D5A0034048C /* MainViewController.swift */,
-				055FD94326E260020034048C /* RepositoryItem.swift */,
-				0580507626E2CFE300845F70 /* Application.swift */,
-				0580508F26E3EDA900845F70 /* IsZero.swift */,
-				0580509426E3EECD00845F70 /* AheadTransformer.swift */,
-				0580509626E3EEDA00845F70 /* BehindTransformer.swift */,
-				050036AE26E7AFE200143CE6 /* KeychainPassword.swift */,
-				050036B326E7D63800143CE6 /* NSError.swift */,
+				050036BC26E7DBE400143CE6 /* PreferencesPathsViewController.swift */,
+				050036B526E7DB8F00143CE6 /* PreferencesViewController.swift */,
+				050036B626E7DB8F00143CE6 /* PreferencesWindowController.swift */,
 				050036F226E82FDD00143CE6 /* RateLimiter.swift */,
+				055FD94326E260020034048C /* RepositoryItem.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -384,12 +395,13 @@
 			children = (
 				055FD93E26E257CD0034048C /* Images */,
 				055FD91D26E22B4F0034048C /* AboutWindowController.xib */,
+				057E313F26E8B17400ACC503 /* ErrorLogWindowController.xib */,
 				055FD91826E22B3A0034048C /* MainMenu.xib */,
-				050036B926E7DB9B00143CE6 /* PreferencesWindowController.xib */,
 				055FD93426E22D7C0034048C /* MainViewController.xib */,
-				055FD93926E22EE90034048C /* PreferencesPathsViewController.xib */,
 				050036C626E7FCDE00143CE6 /* PreferencesAuthenticationViewController.xib */,
 				050036C226E7FCDE00143CE6 /* PreferencesGeneralViewController.xib */,
+				055FD93926E22EE90034048C /* PreferencesPathsViewController.xib */,
+				050036B926E7DB9B00143CE6 /* PreferencesWindowController.xib */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -406,11 +418,11 @@
 		055FD93E26E257CD0034048C /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				055FD94126E25B580034048C /* Icon.icns */,
 				0580506D26E2CB4000845F70 /* Public.icns */,
+				055FD93F26E257CD0034048C /* StatusIconTemplate.pdf */,
 				0580506A26E2C98100845F70 /* VSCode.icns */,
 				0580506926E2C98100845F70 /* Xcode.icns */,
-				055FD94126E25B580034048C /* Icon.icns */,
-				055FD93F26E257CD0034048C /* StatusIconTemplate.pdf */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -514,6 +526,7 @@
 				055FD94026E257CD0034048C /* StatusIconTemplate.pdf in Resources */,
 				050036CA26E7FCDE00143CE6 /* PreferencesAuthenticationViewController.xib in Resources */,
 				055FD94226E25B580034048C /* Icon.icns in Resources */,
+				057E314126E8B17400ACC503 /* ErrorLogWindowController.xib in Resources */,
 				055FD93B26E22EE90034048C /* PreferencesPathsViewController.xib in Resources */,
 				050036C826E7FCDE00143CE6 /* PreferencesGeneralViewController.xib in Resources */,
 				0580506C26E2C98100845F70 /* VSCode.icns in Resources */,
@@ -537,6 +550,7 @@
 				050036B726E7DB8F00143CE6 /* PreferencesViewController.swift in Sources */,
 				055FD92426E22BB60034048C /* NSApplication+LaunchServices.m in Sources */,
 				055FD91A26E22B3A0034048C /* AboutWindowController.swift in Sources */,
+				057E313E26E8AFF100ACC503 /* ErrorLogWindowController.swift in Sources */,
 				050036F626E82FDD00143CE6 /* RateLimiter.swift in Sources */,
 				0580509026E3EDA900845F70 /* IsZero.swift in Sources */,
 				050036BF26E7DC0300143CE6 /* PreferencesAuthenticationViewController.swift in Sources */,
@@ -545,6 +559,8 @@
 				055FD93126E22D190034048C /* Preferences.swift in Sources */,
 				050036C126E7FC8000143CE6 /* PreferencesGeneralViewController.swift in Sources */,
 				055FD91B26E22B3A0034048C /* ApplicationDelegate.swift in Sources */,
+				057E313C26E83BAE00ACC503 /* FetchError.swift in Sources */,
+				057E313A26E8375A00ACC503 /* Logger.swift in Sources */,
 				055FD94426E260020034048C /* RepositoryItem.swift in Sources */,
 				050036B826E7DB8F00143CE6 /* PreferencesWindowController.swift in Sources */,
 				055FD93326E22D5A0034048C /* MainViewController.swift in Sources */,
@@ -609,6 +625,14 @@
 				055FD93A26E22EE90034048C /* Base */,
 			);
 			name = PreferencesPathsViewController.xib;
+			sourceTree = "<group>";
+		};
+		057E313F26E8B17400ACC503 /* ErrorLogWindowController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				057E314026E8B17400ACC503 /* Base */,
+			);
+			name = ErrorLogWindowController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

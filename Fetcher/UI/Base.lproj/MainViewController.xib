@@ -30,13 +30,32 @@
                         <binding destination="-2" name="value" keyPath="self.title" id="ATS-nB-r4M"/>
                     </connections>
                 </textField>
+                <button translatesAutoresizingMaskIntoConstraints="NO" id="dm6-uf-VYU">
+                    <rect key="frame" x="351" y="382" width="16" height="16"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="16" id="mrD-ER-QUW"/>
+                        <constraint firstAttribute="width" constant="16" id="wiE-eg-QqD"/>
+                    </constraints>
+                    <buttonCell key="cell" type="square" title="Error Logs" bezelStyle="shadowlessSquare" image="NSCaution" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="sXf-4v-lUR">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="showErrorLogs:" target="-2" id="srd-bx-EPa"/>
+                        <binding destination="-2" name="hidden" keyPath="self.hasErrors" id="qFi-Ry-BwB">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                            </dictionary>
+                        </binding>
+                    </connections>
+                </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="DHM-4u-9Yj">
                     <rect key="frame" x="377" y="379" width="16" height="22"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="16" id="CPF-Vc-crg"/>
                         <constraint firstAttribute="height" constant="16" id="XOz-xW-00u"/>
                     </constraints>
-                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSActionTemplate" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="6ix-VE-Acv">
+                    <buttonCell key="cell" type="square" title="Main Menu" bezelStyle="shadowlessSquare" image="NSActionTemplate" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="6ix-VE-Acv">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -157,14 +176,14 @@
                                                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                                 </textFieldCell>
                                                                                 <connections>
-                                                                                    <binding destination="usX-4z-YoN" name="hidden" keyPath="objectValue.behind" id="anN-o5-7QW">
-                                                                                        <dictionary key="options">
-                                                                                            <string key="NSValueTransformerName">IsZero</string>
-                                                                                        </dictionary>
-                                                                                    </binding>
                                                                                     <binding destination="usX-4z-YoN" name="value" keyPath="objectValue.behind" id="Uwz-Dc-Btd">
                                                                                         <dictionary key="options">
                                                                                             <string key="NSValueTransformerName">BehindTransformer</string>
+                                                                                        </dictionary>
+                                                                                    </binding>
+                                                                                    <binding destination="usX-4z-YoN" name="hidden" keyPath="objectValue.behind" id="anN-o5-7QW">
+                                                                                        <dictionary key="options">
+                                                                                            <string key="NSValueTransformerName">IsZero</string>
                                                                                         </dictionary>
                                                                                     </binding>
                                                                                 </connections>
@@ -339,14 +358,16 @@
                 <constraint firstAttribute="trailing" secondItem="8jW-y9-j1R" secondAttribute="trailing" id="D3T-or-BAK"/>
                 <constraint firstAttribute="trailing" secondItem="h5L-KI-alE" secondAttribute="trailing" id="Jck-4i-UHa"/>
                 <constraint firstItem="DQa-Cz-q3P" firstAttribute="centerX" secondItem="c22-O7-iKe" secondAttribute="centerX" id="KHT-0h-zHw"/>
+                <constraint firstItem="dm6-uf-VYU" firstAttribute="centerY" secondItem="DHM-4u-9Yj" secondAttribute="centerY" id="KoU-o7-Hj0"/>
                 <constraint firstItem="h5L-KI-alE" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="LQu-6a-8xj"/>
                 <constraint firstItem="qR0-sC-PlJ" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="Lau-bs-N9u"/>
                 <constraint firstItem="DHM-4u-9Yj" firstAttribute="centerY" secondItem="DQa-Cz-q3P" secondAttribute="centerY" id="QJK-I1-B2m"/>
                 <constraint firstItem="8jW-y9-j1R" firstAttribute="top" secondItem="h5L-KI-alE" secondAttribute="bottom" id="WRh-Tv-Iin"/>
+                <constraint firstItem="dm6-uf-VYU" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="DQa-Cz-q3P" secondAttribute="trailing" constant="8" symbolic="YES" id="fdT-uT-SSQ"/>
                 <constraint firstAttribute="bottom" secondItem="8jW-y9-j1R" secondAttribute="bottom" constant="8" id="gwN-Xc-VuP"/>
-                <constraint firstItem="DHM-4u-9Yj" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="DQa-Cz-q3P" secondAttribute="trailing" constant="8" symbolic="YES" id="jd6-18-ZrR"/>
                 <constraint firstItem="qR0-sC-PlJ" firstAttribute="top" secondItem="h5L-KI-alE" secondAttribute="bottom" id="nDL-kj-3Rd"/>
                 <constraint firstItem="h5L-KI-alE" firstAttribute="top" secondItem="DQa-Cz-q3P" secondAttribute="bottom" constant="8" symbolic="YES" id="q6Z-jq-Ufp"/>
+                <constraint firstItem="DHM-4u-9Yj" firstAttribute="leading" secondItem="dm6-uf-VYU" secondAttribute="trailing" constant="10" symbolic="YES" id="z6c-fP-BtK"/>
             </constraints>
             <point key="canvasLocation" x="68.5" y="281.5"/>
         </customView>
@@ -431,6 +452,7 @@
     <resources>
         <image name="NSActionTemplate" width="15" height="15"/>
         <image name="NSApplicationIcon" width="32" height="32"/>
+        <image name="NSCaution" width="32" height="32"/>
         <image name="NSFolder" width="32" height="32"/>
         <image name="NSStatusPartiallyAvailable" width="16" height="16"/>
     </resources>

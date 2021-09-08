@@ -29,15 +29,17 @@ public class MainViewController: NSViewController, NSMenuDelegate
     private let queue   = DispatchQueue( label: "com.xs-labs.Fetcher.UpdateQueue" )
     private let limiter = RateLimiter( maxConcurrentOperationCount: 10 )
     
-    @objc private dynamic var updating = false
+    @objc private dynamic var updating  = false
+    @objc private dynamic var hasErrors = false
     
     @IBOutlet private var mainMenu:        NSMenu!
     @IBOutlet private var tableView:       NSTableView!
     @IBOutlet private var arrayController: NSArrayController!
     
-    private var initialFetchDone = false
-    private var observations     = [ NSKeyValueObservation ]()
-    private var fetchTimer:        Timer?
+    private var logWindowController = ErrorLogWindowController()
+    private var initialFetchDone    = false
+    private var observations        = [ NSKeyValueObservation ]()
+    private var fetchTimer:           Timer?
     
     public override var nibName: NSNib.Name?
     {
@@ -66,7 +68,12 @@ public class MainViewController: NSViewController, NSMenuDelegate
             [ weak self ] _, _ in self?.updateFetchTimer()
         }
         
-        self.observations.append( contentsOf: [ o1, o2, o3 ] )
+        let o4 = Logger.shared.observe( \.errors )
+        {
+            [ weak self ] _, _ in self?.hasErrors = Logger.shared.errors.count > 0
+        }
+        
+        self.observations.append( contentsOf: [ o1, o2, o3, o4 ] )
         
         self.updateSortDescriptors()
     }
@@ -320,5 +327,24 @@ public class MainViewController: NSViewController, NSMenuDelegate
         {
             NSSound.beep()
         }
+    }
+    
+    @IBAction private func showErrorLogs( _ sender: Any? )
+    {
+        guard let window = self.logWindowController.window else
+        {
+            NSSound.beep()
+            
+            return
+        }
+        
+        if window.isVisible == false
+        {
+            window.center()
+        }
+        
+        ApplicationDelegate.shared?.closePopover( sender )
+        window.makeKeyAndOrderFront( sender )
+        NSApp.activate( ignoringOtherApps: true )
     }
 }
